@@ -43,7 +43,9 @@ app.post('/api/login', (req, res) => {
 app.post('/api/signup', (req, res) => {
   db.User.create(req.body)
     .then(data => res.json(data))
-    .catch(err => res.status(400).json(err));
+    .catch(err => {
+      //console.log(err)
+      res.status(400).json(err)});
 });
 
 // Any route with isAuthenticated is protected and you need a valid token

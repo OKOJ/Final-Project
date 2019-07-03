@@ -1,5 +1,5 @@
 {
-  "name": "create-react-express-jwt-server",
+  "name": "makro-market",
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
@@ -25,6 +25,7 @@
     "express-jwt": "^5.3.1",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
+    "mdbreact": "^4.17.0",
     "mongoose": "^5.5.3",
     "morgan": "^1.9.1"
   }

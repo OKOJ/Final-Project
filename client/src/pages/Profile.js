@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withAuth from './../components/withAuth';
 import API from './../utils/API';
 import { Link } from 'react-router-dom';
-
+import Vendor from "../components/Vendor";
 class Profile extends Component {
 
   state = {
@@ -22,9 +22,11 @@ class Profile extends Component {
   render() {
     return (
       <div className="container Profile">
-        <h1>On the profile page!</h1>
+        <h1>Hello {this.state.username}!</h1>
+        <h1>What would you like to put on a market today.</h1>
         <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p>
+        <Vendor />
         <Link to="/">Go home</Link>
       </div>
     )

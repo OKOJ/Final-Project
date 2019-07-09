@@ -24,8 +24,8 @@ class Profile extends Component {
       <div className="container Profile">
         <h1>Hello {this.state.username}!</h1>
         <h1>What would you like to put on a market today.</h1>
-        <p>Username: {this.state.username}</p>
-        <p>Email: {this.state.email}</p>
+        {/* <p>Username: {this.state.username}</p>
+        <p>Email: {this.state.email}</p> */}
         <Vendor />
         <Link to="/">Go home</Link>
       </div>

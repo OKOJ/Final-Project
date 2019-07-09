@@ -17,7 +17,7 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.username, this.state.email, this.state.password)
+    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.address)
       .then(res => {
         // once the user has signed up
         // send them to the login page
@@ -64,6 +64,15 @@ class Signup extends Component {
                    name="password"
                    type="password"
                    id="pwd"
+                   onChange={this.handleChange}/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address:</label>
+            <input className="form-control"
+                   placeholder="Address goes here..."
+                   name="address"
+                   type="text"
+                   id="address"
                    onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>

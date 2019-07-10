@@ -48,10 +48,25 @@ app.post('/api/signup', (req, res) => {
       res.status(400).json(err)});
 });
 
+//PRODUCT ROUTE
+app.post("/api/product",  (req, res) => {
+  db.Product.create(req.body)
+  .then(data => res.json(data))
+  .catch(err => {
+    console.log(err)
+    res.status(400).json(err)});
+});
+
+
+//////???? get product 
+
+
 // Any route with isAuthenticated is protected and you need a valid token
 // to access
 app.get('/api/user/:id', isAuthenticated, (req, res) => {
-  db.User.findById(req.params.id).then(data => {
+  db.User.findById(req.params.id)
+  //.populate("product")
+  .then(data => {
     if(data) {
       res.json(data);
     } else {

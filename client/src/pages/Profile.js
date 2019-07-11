@@ -23,12 +23,14 @@ class Profile extends Component {
     event.preventDefault();
     API.postProduct(this.state.product, this.state.price, this.state.quantity, this.state.image)
     .then( res => {
-      console.log(res)
+      console.log(res);
+      document.getElementById("vendors-form").reset();
     })
     .catch(err => alert(err));
   };
 
   componentDidMount() {
+    console.log(this.props)
     API.getUser(this.props.user.id).then(res => {
       this.setState({
         username: res.data.username,
@@ -45,7 +47,7 @@ class Profile extends Component {
         {/* <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p> */}
         {/* <Vendor /> */}
-        <form onSubmit={this.handleFormSubmit}>
+        <form id="vendors-form" onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label htmlFor="product">Product:</label>
             <input className="form-control"
@@ -58,28 +60,37 @@ class Profile extends Component {
           <div className="form-group">
             <label htmlFor="price">Price :</label>
             <input className="form-control"
-                   placeholder="price "
+                   placeholder="Price "
                    name="price"
-                   type="price"
+                   type="text"
                    id="price"
                    onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="quantity">Quantity:</label>
             <input className="form-control"
-                   placeholder="quantity goes here..."
+                   placeholder="Quantity"
                    name="quantity"
-                   type="quantity"
+                   type="text"
                    id="quantity"
                    onChange={this.handleChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="image">image:</label>
+            <label htmlFor="image">Image:</label>
             <input className="form-control"
-                   placeholder="image goes here..."
+                   placeholder="Image goes here..."
                    name="image"
-                   type="text"
+                   type="file"
                    id="image"
+                   onChange={this.handleChange}/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="contact">Contact:</label>
+            <input className="form-control"
+                   placeholder="Contact Info"
+                   name="contact"
+                   type="text"
+                   id="contact"
                    onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>

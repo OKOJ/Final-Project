@@ -26,6 +26,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: "Product"
+  },
   createdAt: {
     type: Date,
     default: Date.now

@@ -26,7 +26,8 @@ class Profile extends Component {
         <h1>What would you like to put on a market today.</h1>
         <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p>
-        <Vendor />
+        <Vendor
+        />
         <Link to="/">Go home</Link>
       </div>
     )

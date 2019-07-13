@@ -44,14 +44,19 @@ app.post('/api/signup', (req, res) => {
   db.User.create(req.body)
     .then(data => res.json(data))
     .catch(err => {
-      //console.log(err)
+      console.log(err)
       res.status(400).json(err)});
 });
 
 //PRODUCT ROUTE
 app.post("/api/product",  (req, res) => {
   db.Product.create(req.body)
-  .then(data => res.json(data))
+  .then(dbProduct => 
+    {
+      return db.User.findByIdAndUpdate(req.body.userId, { $push: { products: dbProduct._id } }, { new: true })
+      //res.json(data)
+    })
+      .then(dbUser => res.json(dbUser))
   .catch(err => {
     console.log(err)
     res.status(400).json(err)});
@@ -74,6 +79,19 @@ app.get('/api/user/:id', isAuthenticated, (req, res) => {
     }
   }).catch(err => res.status(400).send(err));
 });
+
+app.get('/api/user/:id/products', isAuthenticated, (req, res) => {
+  db.User.findById({_id: req.params.id})
+  .populate("products")
+  .then(dbUser => {
+    console.log(dbUser)
+    res.json(dbUser)
+  }).catch(err => res.status(400).send(err));
+
+});
+
+
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

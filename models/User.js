@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
 const UserSchema = new Schema({
+  // _id: Schema.Types.ObjectId,
   username: {
     type: String,
     required: true,
@@ -26,10 +27,16 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  product: {
+  contact: {
+    type: String,
+    required: true
+},
+  products: [{
+    // id: {
     type: Schema.Types.ObjectId,
-    ref: "Product"
-  },
+    ref: 'Product'
+  // }
+  }],
   createdAt: {
     type: Date,
     default: Date.now

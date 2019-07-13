@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import AuthService from './components/AuthService';
+import Navbar from './components/Navbar'
 //import withAuth from './components/withAuth'; 
-//import Hero from './components/Hero'
 
 const Auth = new AuthService();
 
@@ -19,11 +19,11 @@ class App extends Component {
   };
 
   render() {
-    console.log(process.env.REACT_APP_SECRET_CODE);
+    //console.log(process.env.REACT_APP_SECRET_CODE);
     return (
       <div>
-      {/* <Hero /> */}
       <div className="App">
+      <Navbar />
         <div className="App-header">
           <h2>Welcome 
           {/* {this.props.user.email} */}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from "../components/Navbar";
-import withAuth from './../components/withAuth';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import { Link } from 'react-router-dom';
+// import Navbar from "../components/Navbar";
+// import withAuth from './../components/withAuth';
+// import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
 import ProductCard from './../components/ProductCard';
 class MarketStand extends Component {
 

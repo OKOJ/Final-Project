@@ -3,13 +3,16 @@ const Schema = mongoose.Schema;
 
 
 const ProductSchema = new Schema({
-
-    product: {
+    // user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
+    products: {
         type: String,
         required: true
     },
     price:{
-        type: Number,
+        type: String,
         required: true
     },
     quantity: {
@@ -19,11 +22,16 @@ const ProductSchema = new Schema({
     image: {
         type: String,
         required: true
-    },
-   _userId: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
+    }
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now
+    // }
+    
+//    _userId: {
+//         type: Schema.Types.ObjectId,
+//         ref: 'User'
+//       }
     
 });
 

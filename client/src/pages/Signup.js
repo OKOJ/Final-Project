@@ -17,7 +17,7 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.address)
+    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.address,this.state.contact)
       .then(res => {
         // once the user has signed up
         // send them to the login page
@@ -75,9 +75,20 @@ class Signup extends Component {
                    id="address"
                    onChange={this.handleChange}/>
           </div>
+          <div className="form-group">
+            <label htmlFor="contact">Contact:</label>
+            <input className="form-control"
+                    placeholder="801-123-4567"
+                    name="contact"
+                    type="el"
+                    id="phone"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    required
+                    onChange={this.handleChange}/>
+          </div>
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
-        <p><Link to="/login">Go to Login</Link></p>
+        <p>Have an account?<Link to="/login">Login</Link></p>
       </div>
     );
   }

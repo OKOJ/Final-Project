@@ -7,12 +7,26 @@ export default {
   },
   
   // sign up a user to our service
-  signUpUser: (username, email, password, address) => {
-    return axios.post('api/signup', {username: username, email: email, password: password, address:address});
+  signUpUser: (username, email, password, address,contact) => {
+    return axios.post('/api/signup', {username: username, email: email, password: password, address:address, contact:contact});
   },
 
   //create product database
-  postProduct: (product, price, quantity, image) => {
-    return axios.post('api/product', {product: product, price: price, quantity: quantity, image: image});
+  postProduct: (userId, products, price, quantity, image, contact) => {
+    return axios.post('/api/product', {
+      userId,
+      products,
+      price,
+      quantity,
+      image,
+      contact
+    });
+  },
+
+  //  products by user
+  getUserProducts: (id) => {
+    return axios.get(`/api/user/${id}/products`);
+
   }
+
 };

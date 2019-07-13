@@ -11,10 +11,9 @@ import axios from "axios";
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-//import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 import MarketStand from './pages/MarketStand';
 // import SignupLogin from './pages/SignupLogin';
-import OkMarketStand from './pages/OkMarketStand'
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -27,14 +26,13 @@ ReactDOM.render(
        
         <div>
            
-            {/* <Navbar /> */}
+            <Navbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             {/* <Route exact path="/signuplogin" component={SignupLogin} /> */}
             <Route  path="/profile" component={Profile} />
             <Route  path="/marketstand" component ={MarketStand} />
-            <Route  path="/okmarketstand" component ={OkMarketStand} />
         </div>
     </Router>
     , document.getElementById('root')

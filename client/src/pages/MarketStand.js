@@ -1,58 +1,51 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import Navbar from "../components/Navbar";
-// import withAuth from './../components/withAuth';
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
+import API from './../utils/API';
 class MarketStand extends Component {
 
     state = {
         username: "",
         email: "",
-        // productaray=[]
+        products: []
     };
 
     componentDidMount() {
-        // API.getUser(this.props.user.id).then(res => {
-        //     this.setState({
-        //         username: res.data.username,
-        //         email: res.data.email
-        //     })
-        // });
-
-        // get for the db all the product // update the state array
+        console.log(this.props)
+        API.getUserProducts(this.props.user.id).then(res => {
+            console.log(res)
+            console.log(res.data.products)
+            console.log(res.data.email)
+            this.setState({
+                username: res.data.username,
+                email: res.data.email,
+                products: res.data.products
+            })
+        }); 
     }
+
+// get from the db all the product // update the state array
 
     render() {
         return (
             <div>
-                map this.productarrray(product )
-                <ProductCard
-                    title={"produt.title"}
-                    text={"product.description"}
-                />
+
+                {this.state.products.map(product => {
+
+                    return (
+                        <ProductCard 
+                            key={product._id}
+                            product={product}
+                        /> 
+                    )
+                })}
+
+                <Link to="/profile">Go to Profile</Link>
             </div>
-
-
-
-
-
         )
     }
 }
 
 
-export default MarketStand;
-
-
-// example for how to render 
-// render() {
-//     return (
-//         <div>
-//             map this.productarrray(product )
-//                 <ProductCard
-//                 title={produt.title}
-//                 text={product.description}
-//             />
-//         </div>
+export default withAuth(MarketStand);

@@ -15,11 +15,11 @@ class OkMarketStand extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props)
+        //console.log(this.props)
         API.getUserProducts(this.props.user.id).then(res => {
-            console.log(res)
-            console.log(res.data.products)
-            console.log(res.data.email)
+            //console.log(res)
+            //console.log(res.data.products)
+            //console.log(res.data.email)
             this.setState({
                 username: res.data.username,
                 email: res.data.email,
@@ -36,11 +36,14 @@ class OkMarketStand extends Component {
                 <h1>Marketstand</h1>
                 {/* map this.productarrray(product ) */}
                 {this.state.products.map(product => {
-
+                               // console.log(product);
                     return(
+                        
                       <div className="container">
-                       <h1>  Name{product.id}</h1> 
-                       <h5>Product {product.product}</h5>
+                           key={product._id}
+                       <h1> Name:   {product._id}</h1> 
+                       <h5>Product:  {product.products}</h5>
+                       <h5>Price: {product.price}</h5>
                        <img src={product.image} alt="item"></img>
 
                          

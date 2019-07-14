@@ -7,16 +7,25 @@ import Button from 'react-bootstrap/Button';
 // or manually wrapping the input with a form-group div
 // All of the props passed to this component are spread onto the input element
 function ProductCard(props) {
+    const { product } = props;
+
     return (
-        <div>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.image}/>
+        <div >
+            <Card style={{ width: '18rem', backgroundColor: 'lightblue' }}>
+
+                <Card.Img variant="top" src={product.image} />
+                
                 <Card.Body>
-                    <Card.Title>{props.products}</Card.Title>
+
+                    <Card.Title>
+                        {product.products}
+                    </Card.Title>
+
                     <Card.Text>
-                        {props.price}
+                       <p> ${product.price}</p>
+                        <p> Quantity: {product.quantity}</p>
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="warning">Go somewhere</Button>
                 </Card.Body>
             </Card>
         </div>

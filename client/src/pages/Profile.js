@@ -157,7 +157,7 @@ class Profile extends Component {
         <br></br>
         <Link to="/">Go home</Link>
         <br></br>
-        <Link to="/okmarketstand">Go to Your Marketstand</Link>
+        <Link to="/marketstand">Go to Your Marketstand</Link>
       </div>
     )
   }

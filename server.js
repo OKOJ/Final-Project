@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
@@ -24,6 +25,8 @@ app.use(morgan('dev'));
 // Setting up express to use json and set it to req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(bodyParser.json({limit: '1000kb'}));
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})
@@ -61,9 +64,6 @@ app.post("/api/product",  (req, res) => {
     console.log(err)
     res.status(400).json(err)});
 });
-
-
-//////???? get product 
 
 
 // Any route with isAuthenticated is protected and you need a valid token

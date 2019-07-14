@@ -2,11 +2,11 @@
 
 .navbar-brand{
     font-family: 'Cabin Sketch', cursive;
-    color: yellow;
+    color: green;
     font-size: 60px;
     margin-left: 0;
 }
 
 .nav-link{
-    color: yellow;
+    color: green;
 }

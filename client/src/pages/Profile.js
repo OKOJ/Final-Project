@@ -3,6 +3,7 @@ import withAuth from './../components/withAuth';
 import API from './../utils/API';
 import { Link } from 'react-router-dom';
 //import Vendor from "../components/Vendor";
+import ReactFileReader from 'react-file-reader';
 
 
 
@@ -12,6 +13,12 @@ class Profile extends Component {
     username: "",
     email: ""
   };
+
+  handleFiles = (files) => {
+    this.setState({
+      image: files.base64[0]
+    });
+  }
 
   handleChange = event => {
     const {name, value} = event.target;
@@ -25,7 +32,7 @@ class Profile extends Component {
     API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.contact)
     .then( res => {
       console.log(res.data);
-      document.getElementById("vendors-form").reset();
+      //document.getElementById("vendors-form").reset();
     })
     .catch(err => alert(err));
   };
@@ -51,7 +58,7 @@ class Profile extends Component {
         {/* <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p> */}
         {/* <Vendor /> */}
-        <form id="vendors-form" onSubmit={this.handleFormSubmit}>
+        <div id="vendors-form">
           <div className="form-group">
             <label htmlFor="product">Product:</label>
             <input className="form-control"
@@ -81,13 +88,20 @@ class Profile extends Component {
           </div>
 
           <div className="form-group ">
-            <label htmlFor="image">Image:</label>
+  
+ 
+          <ReactFileReader fileTypes={[".png, .jpg"]} base64={true} multipleFiles={true} handleFiles={this.handleFiles}>
+  <button className='btn'>Upload</button>
+</ReactFileReader>
+
+<img src={this.state.image} alt="pre"/>
+            {/* <label htmlFor="image">Image:</label>
             <input className="form-control"
                    placeholder="Image goes here..."
                    name="image"
                    type="file"
                    id="image"
-                   onChange={this.handleChange}/>
+                   onChange={this.handleChange}/> */}
           </div>
 
           {/* <div className="form-group">
@@ -137,8 +151,8 @@ class Profile extends Component {
            </div>
           </div> */}
 
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+        </div>
         <br></br>
         <br></br>
         <Link to="/">Go home</Link>

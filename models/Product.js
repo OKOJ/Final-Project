@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const ProductSchema = new Schema({
-    // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    
     products: {
         type: String,
         required: true
@@ -20,18 +17,13 @@ const ProductSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
+        type:
+        {
+            data: Buffer,
+            contentType: String
+    },
         required: true
     }
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now
-    // }
-    
-//    _userId: {
-//         type: Schema.Types.ObjectId,
-//         ref: 'User'
-//       }
     
 });
 

@@ -8,7 +8,13 @@ export default {
   
   // sign up a user to our service
   signUpUser: (username, email, password, address,contact) => {
-    return axios.post('/api/signup', {username: username, email: email, password: password, address:address, contact:contact});
+    return axios.post('/api/signup', {
+      username, 
+      email, 
+      password, 
+      address, 
+      contact
+    });
   },
 
   //create product database

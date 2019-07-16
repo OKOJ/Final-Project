@@ -14,6 +14,7 @@ import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
+import Footer from './components/Footer'
 // import SignupLogin from './pages/SignupLogin';
 import Wrapper from './components/Wrapper';
 
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route exact path="/marketplace" component={MarketPlace} />
             {/* <Route exact path="/signuplogin" component={SignupLogin} /> */}
             <Route  path="/marketstand" component ={MarketStand} />
+            <Footer />
         </div>
         </Wrapper>
     </Router>

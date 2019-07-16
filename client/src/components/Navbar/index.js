@@ -38,8 +38,9 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg">
-                {/* <div className="container"> */}
+            <nav className="navbar navbar-expand-lg" >
+                <div className="container">
+            
                 <div className="logo">
                     <Link className="navbar-brand" to="/">Makro-Marker</Link>
                     <div className="moto">from our garden to Your table</div>
@@ -52,7 +53,7 @@ class Navbar extends Component {
                         </ul>
                         {this.showNavigation()}
                     </div>
-                {/* </div> */}
+                </div>
             </nav>
         )
     }

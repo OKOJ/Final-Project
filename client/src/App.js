@@ -29,7 +29,6 @@ class App extends Component {
     return (
       // <div>
       <div className="App">
-      {/* <Navbar /> */}
         <div className="App-header">
           <h1>Welcome to our Marketplace. </h1>
           <br></br>

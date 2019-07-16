@@ -35,7 +35,6 @@ ReactDOM.render(
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/marketplace" component={MarketPlace} />
             {/* <Route exact path="/signuplogin" component={SignupLogin} /> */}
-            <Route  path="/profile" component={Profile} />
             <Route  path="/marketstand" component ={MarketStand} />
         </div>
     </Router>

@@ -38,7 +38,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg" style={{ backgroundColor: 'lightgreen' }}>
+            <nav className="navbar navbar-expand-lg" >
                 <div className="container">
             
                 <div className="logo">

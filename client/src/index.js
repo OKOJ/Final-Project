@@ -14,6 +14,7 @@ import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 import MarketStand from './pages/MarketStand';
 // import SignupLogin from './pages/SignupLogin';
+import Wrapper from './components/Wrapper';
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -23,9 +24,8 @@ if(localStorage.getItem("id_token")) {
 
 ReactDOM.render(
     <Router>
-       
+       <Wrapper>
         <div>
-           
             <Navbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
@@ -34,6 +34,7 @@ ReactDOM.render(
             <Route  path="/profile" component={Profile} />
             <Route  path="/marketstand" component ={MarketStand} />
         </div>
+        </Wrapper>
     </Router>
     , document.getElementById('root')
 );

@@ -18,14 +18,14 @@ export default {
   },
 
   //create product database
-  postProduct: (userId, products, price, quantity, image, contact) => {
+  postProduct: (userId, products, price, quantity, image, description) => {
     return axios.post('/api/product', {
       userId,
       products,
       price,
       quantity,
       image,
-      contact
+      description
     });
   },
 

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
 import API from './../utils/API';
+
+
 class MarketStand extends Component {
 
     state = {
@@ -41,7 +43,11 @@ class MarketStand extends Component {
                     )
                 })}
 
-                <Link to="/profile">Go to Profile</Link>
+                
+            
+            <div>
+            <Link to="/profile">Go to Profile</Link>
+            </div>
             </div>
         )
     }

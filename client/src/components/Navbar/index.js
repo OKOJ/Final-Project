@@ -40,7 +40,11 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-lg" style={{ backgroundColor: 'lightgreen' }}>
                 <div className="container">
+            
+                <div className="logo">
                     <Link className="navbar-brand" to="/">Makro-Marker</Link>
+                    <div className="moto">from our garden to Your table</div>
+                    </div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

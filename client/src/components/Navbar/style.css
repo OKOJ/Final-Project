@@ -1,12 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Sriracha|Open+Sans&display=swap');
+
+.navbar.navbar-expand-lg{
+    /* background-color:yellowgreen; */
+    mix-blend-mode: screen;
+    position: sticky;
+    width: 100%;
+    
+}
 
 .navbar-brand{
     font-family: 'Cabin Sketch', cursive;
-    color: green;
-    font-size: 60px;
-    margin-left: 0;
+    color:ghostwhite;
+    /* color: black; */
+    font-size: 70px;
+    height: max-content;
+    font-weight: 900;
+}
+.moto{
+    color: ghostwhite;
+    font-family:'Sriracha';
 }
 
 .nav-link{
-    color: green;
+    color:ghostwhite;
+    font-size: x-large;
+    font-family:'Sriracha';
 }

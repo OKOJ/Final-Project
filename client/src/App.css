@@ -1,23 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 .App {
   text-align: center;
-  height: -webkit-fill-available;
-  background-image: url(https://cdn.pixabay.com/photo/2015/03/24/08/52/beetroot-687251__480.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  
 }
 
 
 .App-header {
-  
+  margin-top: 120px;
   height: 300px;
   padding: 20px;
-  color: yellowgreen;
+  color:ghostwhite;
   width: 50%;
+  font-size: 20px;
 }
 
 .App-intro {
+  font-family: 'Open Sans', sans-serif;
   font-size: large;
   width: 50%;
+  margin-top: 70px;
+  
 }
 
+.btn.btn-success{
+  font-family:'Sriracha';
+  font-size: 20px;
+}
 

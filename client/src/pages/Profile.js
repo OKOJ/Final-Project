@@ -4,6 +4,7 @@ import API from './../utils/API';
 import { Link } from 'react-router-dom';
 //import Vendor from "../components/Vendor";
 import ReactFileReader from 'react-file-reader';
+import './Profile.css'
 
 
 
@@ -15,7 +16,14 @@ class Profile extends Component {
   };
 
   handleFiles = (files) => {
+   
+    if(files.fileList[0].size > 100000){
+
+      alert("Please upload image smaller than 100kb ")
+      return false;
+    }
     this.setState({
+
       image: files.base64[0]
     });
   }
@@ -27,12 +35,22 @@ class Profile extends Component {
     });
   };
 
+  clearInput = () => {
+    // this.setState({
+    //   products: '',
+    //   price: '',
+    //   quantity: ''
+    // })
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
-    API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.contact)
+    
+    API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.description)
     .then( res => {
       console.log(res.data);
-      //document.getElementById("vendors-form").reset();
+      //this.clearInput();
+      // document.getElementById("vendors-form").reset();
     })
     .catch(err => alert(err));
   };
@@ -48,7 +66,7 @@ class Profile extends Component {
         email: res.data.email
       })
     });
-  }
+  };
 
   render() {
     return (
@@ -57,7 +75,6 @@ class Profile extends Component {
         <h1>What would you like to put on a market today.</h1>
         {/* <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p> */}
-        {/* <Vendor /> */}
         <div id="vendors-form">
           <div className="form-group">
             <label htmlFor="product">Product:</label>
@@ -86,71 +103,25 @@ class Profile extends Component {
                    id="quantity"
                    onChange={this.handleChange}/>
           </div>
-
-          <div className="form-group ">
-  
- 
-          <ReactFileReader fileTypes={[".png, .jpg"]} base64={true} multipleFiles={true} handleFiles={this.handleFiles}>
-  <button className='btn'>Upload</button>
-</ReactFileReader>
-
-<img src={this.state.image} alt="pre"/>
-            {/* <label htmlFor="image">Image:</label>
+          <div className="form-group">
+            <label htmlFor="description">Description:</label>
             <input className="form-control"
-                   placeholder="Image goes here..."
-                   name="image"
-                   type="file"
-                   id="image"
-                   onChange={this.handleChange}/> */}
+                   placeholder="Short description of your product...  "
+                   name="description"
+                   type="text"
+                   id="description"
+                   onChange={this.handleChange}/>
           </div>
 
-          {/* <div className="form-group">
-            <label htmlFor="image">Image:</label>
-            <div className="custom-file">
-            <input className="custom-file-input"
-                   placeholder="Image goes here..."
-                  //  aria-describedby="inputGroupFileAddon04"
-                   name="image"
-                   type="file"
-                   id="image"
-                   onChange={this.handleChange}/>
-            <label className="custom-file-label" htmlFor="inputGroupFile04">Choose file</label>
-            </div>
-          </div> */}
-
-
-
-
-          {/* <div className="form-group">
-            <label htmlFor="phone">Contact number:</label>
-            <input className="form-control"
-                   placeholder="801-123-4567"
-                   name="contact"
-                   type="el"
-                   id="phone"
-                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                   required
-                   onChange={this.handleChange}/>
-           <div className="form-check">
-            <input className="form-check-input" 
-                  type="checkbox" 
-                  value="call"
-                  name="phone" 
-                  id="call" 
-                  onChange={this.handleChange}/>
-            <label className="form-check-label" htmlFor="contact">Call</label>
-            <br></br>
-            <input className="form-check-input" 
-                  type="checkbox" 
-                  value="text" 
-                  name="phone"
-                  id="text"
-                  onChange={this.handleChange} />
-            <label className="form-check-label" htmlFor="contact">Text</label>
-    
-           </div>
-          </div> */}
-
+          <div className="form-group ">
+          <ReactFileReader fileTypes={[".png, .jpg"]}
+                           base64={true} 
+                           multipleFiles={true} 
+                           handleFiles={this.handleFiles}>
+            <button className='btn btn-primary'>Upload Image</button>
+          </ReactFileReader>
+          <img src={this.state.image} alt="" style={{width: '200px',height: '250px'}} />
+          </div>
           <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
         </div>
         <br></br>

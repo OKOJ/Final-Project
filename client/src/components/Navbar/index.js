@@ -12,8 +12,8 @@ class Navbar extends Component {
     showNavigation = () => {
         if (this.Auth.loggedIn()) {
             return (
-                <ul style={{backgroundColor: 'lightgreen' }} className="navbar-nav" style={{backgroundColor: 'lightgreen' }}>
-                    <li className="nav-item"style={{backgroundColor: 'lightgreen' }}>
+                <ul className="navbar-nav">
+                    <li className="nav-item">
                         <Link className="nav-link" to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item">

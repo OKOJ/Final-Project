@@ -5,6 +5,10 @@ export default {
   getUser: (id) => {
     return axios.get(`/api/user/${id}`);
   },
+
+  getAll: (address) => {
+    return axios.get(`/api/user/address`);
+  },
   
   // sign up a user to our service
   signUpUser: (username, email, password, address) => {

@@ -24,6 +24,7 @@ function ProductCard(props) {
                     <Card.Text>
                        Price: $ {product.price}
                        Quantity: {product.quantity}
+                       Description: {product.description}
                     </Card.Text>
                     <Button variant="warning">Go somewhere</Button>
                 </Card.Body>

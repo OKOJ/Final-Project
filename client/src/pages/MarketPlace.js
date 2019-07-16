@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
-import withAuth from './../components/withAuth';
+// import withAuth from './../components/withAuth';
 
 import Geocode from "react-geocode"
  
@@ -62,4 +62,5 @@ class MarketPlace extends Component {
 }
 
 
-export default withAuth(MarketPlace);
+//export default withAuth(MarketPlace);
+export default MarketPlace;

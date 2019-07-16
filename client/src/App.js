@@ -27,7 +27,6 @@ class App extends Component {
   render() {
     //console.log(process.env.REACT_APP_SECRET_CODE);
     return (
-      // <div>
       <div className="App">
       {/* <Navbar /> */}
         <div className="App-header">
@@ -36,17 +35,16 @@ class App extends Component {
           <br></br>
           <p>Place were produce are Local, Organic and Freshly Picked for You everyday. </p>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <button type="button" className="btn btn-success" onClick={this.goToMarketplace}>Marketplace</button>
           {/* <button type="button" className="btn btn-primary" onClick={this.goToEditProfile}>Go to Profile</button>
           <button type="button" className="btn btn-danger" onClick={this.handleLogout}>Logout</button> */}
-        </p>
-      {/* </div> */}
-        <Maps />
+        </div>
+        <Maps/>
       </div>
     );
   }
 }
 
 //export default withAuth(App);
-export default App;
+export default App; 

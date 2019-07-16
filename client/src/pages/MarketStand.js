@@ -22,7 +22,7 @@ class MarketStand extends Component {
             this.setState({
                 username: res.data.username,
                 email: res.data.email,
-                products: res.data.products
+                products: res.data.products,
             })
         }); 
     }
@@ -34,11 +34,11 @@ class MarketStand extends Component {
             <div>
 
                 {this.state.products.map(product => {
-
                     return (
                         <ProductCard 
                             key={product._id}
                             product={product}
+                            //description={description}
                         /> 
                     )
                 })}

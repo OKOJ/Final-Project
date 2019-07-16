@@ -12,8 +12,8 @@ class Navbar extends Component {
     showNavigation = () => {
         if (this.Auth.loggedIn()) {
             return (
-                <ul className="navbar-nav">
-                    <li className="nav-item">
+                <ul style={{backgroundColor: 'lightgreen' }} className="navbar-nav" style={{backgroundColor: 'lightgreen' }}>
+                    <li className="nav-item"style={{backgroundColor: 'lightgreen' }}>
                         <Link className="nav-link" to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item">
@@ -38,7 +38,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-lg" style={{ backgroundColor: 'lightgreen' }}>
                 <div className="container">
                     <Link className="navbar-brand" to="/">Makro-Marker</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

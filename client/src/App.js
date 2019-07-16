@@ -26,7 +26,6 @@ class App extends Component {
     return (
       <div>
       <div className="App">
-      <Navbar />
         <div className="App-header">
           <h2>Welcome 
           {/* {this.props.user.email} */}

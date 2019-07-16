@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 
 const ProductSchema = new Schema({
-
-    product: {
+    
+    products: {
         type: String,
         required: true
     },
     price:{
-        type: Number,
+        type: String,
         required: true
     },
     quantity: {
@@ -17,13 +17,13 @@ const ProductSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
-        required: true
+        type:
+        {
+            data: Buffer,
+            contentType: String
     },
-   _userId: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
+        required: true
+    }
     
 });
 

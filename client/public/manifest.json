@@ -3,7 +3,9 @@
   "name": "Makro-Market",
   "icons": [
     {
-      "sizes": "192x192",
+      "src": "favicon.ico",
+      "sizes": "32x32",
+
       "type": "image/png"
     }
   ],

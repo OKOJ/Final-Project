@@ -1,24 +1,23 @@
-/* .App {
+.App {
   text-align: center;
+  height: -webkit-fill-available;
+  background-image: url(https://cdn.pixabay.com/photo/2015/03/24/08/52/beetroot-687251__480.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  
+  height: 300px;
   padding: 20px;
-  color: black;
+  color: yellowgreen;
+  width: 50%;
 }
 
 .App-intro {
   font-size: large;
+  width: 50%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+

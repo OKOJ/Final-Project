@@ -4,11 +4,13 @@ import AuthService from './components/AuthService';
 import withAuth from './components/withAuth'; 
 import Hero from './components/Hero'
 import Maps from './components/Map'
+import Navbar from './components/Navbar'
+//import withAuth from './components/withAuth'; 
+
 
 const Auth = new AuthService();
 
 class App extends Component {
-
 
   handleLogout = () => {
     Auth.logout();
@@ -20,13 +22,15 @@ class App extends Component {
   };
 
   render() {
-    console.log(process.env.REACT_APP_SECRET_CODE);
+    //console.log(process.env.REACT_APP_SECRET_CODE);
     return (
       <div>
-      <Hero />
       <div className="App">
+      <Navbar />
         <div className="App-header">
-          <h2>Welcome {this.props.user.email}</h2>
+          <h2>Welcome 
+          {/* {this.props.user.email} */}
+          </h2>
         </div>
         <p className="App-intro">
           <button type="button" className="btn btn-primary" onClick={this.goToEditProfile}>Go to Profile</button>
@@ -39,5 +43,5 @@ class App extends Component {
   }
 }
 
-export default withAuth(App);
-//export default App;
+//export default withAuth(App);
+export default App;

@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Sriracha&display=swap');
+
+.navbar-brand{
+    font-family: 'Cabin Sketch', cursive;
+    color: green;
+    font-size: 60px;
+    margin-left: 0;
+}
+
+.nav-link{
+    color: green;
+}

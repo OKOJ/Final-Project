@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
@@ -25,6 +26,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(bodyParser.json({limit: '1000kb'}));
+
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})
   .then(() => console.log("MongoDB Connected!"))
@@ -44,14 +47,19 @@ app.post('/api/signup', (req, res) => {
   db.User.create(req.body)
     .then(data => res.json(data))
     .catch(err => {
-      //console.log(err)
+      console.log(err)
       res.status(400).json(err)});
 });
 
 //PRODUCT ROUTE
 app.post("/api/product",  (req, res) => {
   db.Product.create(req.body)
-  .then(data => res.json(data))
+  .then(dbProduct => 
+    {
+      return db.User.findByIdAndUpdate(req.body.userId, { $push: { products: dbProduct._id } }, { new: true })
+      //res.json(data)
+    })
+      .then(dbUser => res.json(dbUser))
   .catch(err => {
     console.log(err)
     res.status(400).json(err)});
@@ -70,9 +78,6 @@ app.get("/api/user/address", (req, res) => {
 })
 
 
-//////???? get product 
-
-
 // Any route with isAuthenticated is protected and you need a valid token
 // to access
 app.get('/api/user/:id', isAuthenticated, (req, res) => {
@@ -86,6 +91,19 @@ app.get('/api/user/:id', isAuthenticated, (req, res) => {
     }
   }).catch(err => res.status(400).send(err));
 });
+
+app.get('/api/user/:id/products', isAuthenticated, (req, res) => {
+  db.User.findById({_id: req.params.id})
+  .populate("products")
+  .then(dbUser => {
+    console.log(dbUser)
+    res.json(dbUser)
+  }).catch(err => res.status(400).send(err));
+
+});
+
+
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

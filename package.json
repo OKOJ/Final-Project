@@ -4,6 +4,7 @@
   "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
+    "test": "echo 'no test'",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
@@ -34,5 +35,6 @@
     "react-geocode": "^0.1.2",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-file-reader": "^1.1.4"
+    
   }
 }

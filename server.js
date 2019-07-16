@@ -67,6 +67,18 @@ app.post("/api/product",  (req, res) => {
     res.status(400).json(err)});
 });
 
+// GET ALL // ADDRESS ROUTE
+app.get("/api/user/address", (req, res) => {
+  db.User.find({})
+  .then(data => {
+    if(data) {
+      res.json(data);
+    } else {
+      res.status(404).send({success: false, message: 'No user found'});
+    }
+  }).catch(err => res.status(400).send(err))
+})
+
 
 // Any route with isAuthenticated is protected and you need a valid token
 // to access

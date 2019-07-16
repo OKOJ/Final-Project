@@ -12,9 +12,11 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
+import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
 // import SignupLogin from './pages/SignupLogin';
 import Wrapper from './components/Wrapper';
+
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -30,8 +32,9 @@ ReactDOM.render(
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/marketplace" component={MarketPlace} />
             {/* <Route exact path="/signuplogin" component={SignupLogin} /> */}
-            <Route  path="/profile" component={Profile} />
             <Route  path="/marketstand" component ={MarketStand} />
         </div>
         </Wrapper>

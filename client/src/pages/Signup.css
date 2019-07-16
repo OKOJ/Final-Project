@@ -1,0 +1,8 @@
+.container-signup{
+    width: 60%;
+    background-color: lightslategray;
+    mix-blend-mode: hard-light;
+    padding: 35px;
+    margin-left: 50px;
+    margin-top: 90px;
+}

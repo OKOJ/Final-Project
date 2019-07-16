@@ -39,8 +39,7 @@ class OkMarketStand extends Component {
                                // console.log(product);
                     return(
                         
-                      <div className="container">
-                           key={product._id}
+                      <div className="container" key={product._id}>
                        <h1> Name:   {product._id}</h1> 
                        <h5>Product:  {product.products}</h5>
                        <h5>Price: {product.price}</h5>

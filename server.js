@@ -26,7 +26,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(bodyParser.json({limit: '1000kb'}));
+//app.use(bodyParser.json({limit: '1000000kb'}));
+app.use(bodyParser.json({limit: '250mb'}));
+app.use(bodyParser.urlencoded({limit: '250mb', extended: true}));
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})

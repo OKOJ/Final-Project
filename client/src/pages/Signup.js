@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
+import './Signup.css'
 
 class Signup extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-signup">
 
         <h1>Signup</h1>
         <form onSubmit={this.handleFormSubmit}>
@@ -88,6 +89,7 @@ class Signup extends Component {
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
+        <br></br>
         <p>Have an account?<Link to="/login">Login</Link></p>
       </div>
     );

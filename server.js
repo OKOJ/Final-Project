@@ -5,8 +5,15 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
+var AWS = require('aws-sdk');
+new AWS.Config({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: "us-west-2"
+});
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
+var s3Bucket = new AWS.S3( { params: {Bucket: 'marketplacephotos'} } );
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");
@@ -54,7 +61,26 @@ app.post('/api/signup', (req, res) => {
 });
 
 //PRODUCT ROUTE
-app.post("/api/product",  (req, res) => {
+app.post("/api/product",  async (req, res) => {
+  console.log('req.body: ', req.body);
+  let buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')
+  let data = {
+    Key: req.body.userId, 
+    Body: buf,
+    ContentEncoding: 'base64',
+    ContentType: 'image/jpeg'
+  };
+  await s3Bucket.putObject(data, function(err, data){
+      if (err) { 
+        console.log(err);
+        console.log('Error uploading data: ', data); 
+      } else {
+        console.log('data: ', data);
+        console.log('succesfully uploaded the image!');
+      }
+  });
+  //TODO
+  req.body.image = data.url || "";
   db.Product.create(req.body)
   .then(dbProduct => 
     {

@@ -16,12 +16,11 @@ class Profile extends Component {
   };
 
   handleFiles = (files) => {
-   
-    if(files.fileList[0].size > 100000){
+    // if(files.fileList[0].size > 100000){
 
-      alert("Please upload image smaller than 100kb ")
-      return false;
-    }
+    //   alert("Please upload image smaller than 100kb ")
+    //   return false;
+    // }
     this.setState({
 
       image: files.base64[0]

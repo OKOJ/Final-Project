@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/AuthService';
-import withAuth from './components/withAuth'; 
-import Hero from './components/Hero'
+//import withAuth from './components/withAuth'; 
+//import Hero from './components/Hero'
 import Maps from './components/Map'
-import Navbar from './components/Navbar'
+//import Navbar from './components/Navbar'
 //import withAuth from './components/withAuth'; 
 
 

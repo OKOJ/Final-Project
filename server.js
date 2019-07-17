@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
+var fs = require('fs');
 var AWS = require('aws-sdk');
 new AWS.Config({
   accessKeyId: process.env.ACCESS_KEY_ID,
@@ -34,8 +35,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //app.use(bodyParser.json({limit: '1000000kb'}));
-app.use(bodyParser.json({limit: '250mb'}));
-app.use(bodyParser.urlencoded({limit: '250mb', extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})
@@ -65,6 +66,7 @@ app.post("/api/product",  async (req, res) => {
   console.log('req.body: ', req.body);
   let buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')
   let data = {
+    Bucket: s3Bucket,
     Key: req.body.userId, 
     Body: buf,
     ContentEncoding: 'base64',
@@ -80,7 +82,7 @@ app.post("/api/product",  async (req, res) => {
       }
   });
   //TODO
-  req.body.image = data.url || "";
+  //req.body.image = data.url || "";
   db.Product.create(req.body)
   .then(dbProduct => 
     {

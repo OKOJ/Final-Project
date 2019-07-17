@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
-import './Signup.css'
+import './SignupLogin.css'
 
 class Signup extends Component {
   constructor() {
@@ -36,9 +36,9 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="container-signup">
-
+      <div className="container">
         <h1>Signup</h1>
+        <br></br>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
@@ -87,10 +87,11 @@ class Signup extends Component {
                     required
                     onChange={this.handleChange}/>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <br></br>
+          <button type="submit" className="btn btn-success">Submit</button>
         </form>
         <br></br>
-        <p>Have an account?<Link to="/login">Login</Link></p>
+        <h5>Have an account?   <Link to="/login">Login</Link> </h5>
       </div>
     );
   }

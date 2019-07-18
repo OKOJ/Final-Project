@@ -3,24 +3,35 @@
 
 .App {
   text-align: center;
+  width: 100%;
+  height:  -webkit-fill-available;
   
 }
+span{
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 28px;
+  font-weight: 700;
+}
 
+h1{
+  font-family:'Sriracha';
+}
 
 .App-header {
-  margin-top: 120px;
+  margin-top: 250px;
   height: 300px;
   padding: 20px;
   color:ghostwhite;
   width: 50%;
-  font-size: 20px;
+  font-size: 22px;
+  text-align: center;
 }
 
 .App-intro {
   font-family: 'Open Sans', sans-serif;
   font-size: large;
   width: 50%;
-  margin-top: 70px;
+  margin-top: 80px;
   
 }
 

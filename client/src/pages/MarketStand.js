@@ -41,13 +41,14 @@ class MarketStand extends Component {
                             product={product}
                         /> 
                     )
-                })}
+                }
+                )}
 
                 
             
-            <div>
-            <Link to="/profile">Go to Profile</Link>
-            </div>
+               <div>
+                    <Link to="/profile">Go to Profile</Link>
+               </div>
             </div>
         )
     }

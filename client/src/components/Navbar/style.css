@@ -3,8 +3,11 @@
 .navbar.navbar-expand-lg{
     /* background-color:yellowgreen; */
     mix-blend-mode: screen;
-    position: sticky;
+    position: fixed;
+    top: 0;
     width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
     
 }
 

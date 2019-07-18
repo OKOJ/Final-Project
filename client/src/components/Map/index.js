@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react';
 const Marker = ({lat, lng, text}) => {
 
   return <div>
-
+<h2>*</h2>
   </div>;
 // add what we want custom (will show up as the marker)
 }
@@ -27,9 +27,9 @@ class Maps extends Component {
     const { locations } = this.props;
     
     return (
-        <div>
-            <div style={{ height: '500px', width: '500px' }}>
-                <GoogleMapReact
+        // <div>
+            <div style={{ height: '800px', width: '80%', padding:'20px', marginTop:'200px' }}>
+                <GoogleMapReact  
                     bootstrapURLKeys={{ key: "AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8" }}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom} 
@@ -49,7 +49,7 @@ class Maps extends Component {
                     })}
                 </GoogleMapReact>
             </div>
-        </div>
+        // {/* </div> */}
     );
   }
 }

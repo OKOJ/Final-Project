@@ -1,0 +1,11 @@
+.container{
+    width: auto;
+    /* background-color:yellowgreen; */
+    /* mix-blend-mode: hard-light; */
+    padding: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    color: white;
+    font-size: 18px;
+}

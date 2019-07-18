@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import withAuth from './../components/withAuth';
 import API from './../utils/API';
 import { Link } from 'react-router-dom';
-//import Vendor from "../components/Vendor";
 import ReactFileReader from 'react-file-reader';
 import './Profile.css'
 
@@ -10,18 +9,18 @@ import './Profile.css'
 
 class Profile extends Component {
 
+
   state = {
     username: "",
     email: ""
   };
 
   handleFiles = (files) => {
-   
-    if(files.fileList[0].size > 100000){
+    // if(files.fileList[0].size > 100000){
 
-      alert("Please upload image smaller than 100kb ")
-      return false;
-    }
+    //   alert("Please upload image smaller than 100kb ")
+    //   return false;
+    // }
     this.setState({
 
       image: files.base64[0]
@@ -35,21 +34,29 @@ class Profile extends Component {
     });
   };
 
-  clearInput = () => {
-    // this.setState({
-    //   products: '',
-    //   price: '',
-    //   quantity: ''
-    // })
-  };
+
+  handleClearForm = event => {
+    console.log(this)
+    //event.preventDefault();
+    this.setState({ 
+      value: ""
+        // product: '',
+        // price: '',
+        // quantity: '',
+        // description: ''
+    })
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    //this.input = React.createRef();
+}
 
   handleFormSubmit = event => {
     event.preventDefault();
-    
     API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.description)
     .then( res => {
       console.log(res.data);
-      //this.clearInput();
+      
+      this.handleClearForm();
       // document.getElementById("vendors-form").reset();
     })
     .catch(err => alert(err));
@@ -76,12 +83,13 @@ class Profile extends Component {
         {/* <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p> */}
         <div id="vendors-form">
-          <div className="form-group">
+          <div className="form-group" >
             <label htmlFor="product">Product:</label>
             <input className="form-control"
                    placeholder="Product name"
                    name="product"
                    type="text"
+                   value={this.state.value}
                    id="product"
                    onChange={this.handleChange}/>
           </div>
@@ -91,6 +99,7 @@ class Profile extends Component {
                    placeholder="$ 00.00 "
                    name="price"
                    type="text"
+                   value={this.state.value}
                    id="price"
                    onChange={this.handleChange} />
           </div>
@@ -100,6 +109,7 @@ class Profile extends Component {
                    placeholder="Quantity"
                    name="quantity"
                    type="text"
+                   value={this.state.value}
                    id="quantity"
                    onChange={this.handleChange}/>
           </div>
@@ -109,6 +119,7 @@ class Profile extends Component {
                    placeholder="Short description of your product...  "
                    name="description"
                    type="text"
+                   value={this.state.value}
                    id="description"
                    onChange={this.handleChange}/>
           </div>
@@ -120,16 +131,24 @@ class Profile extends Component {
                            handleFiles={this.handleFiles}>
             <button className='btn btn-primary'>Upload Image</button>
           </ReactFileReader>
-          <img src={this.state.image} alt="" style={{width: '200px',height: '250px'}} />
+         
           </div>
-          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} >Submit</button>
         </div>
+      
         <br></br>
         <br></br>
+        
+        <div>
         <Link to="/">Go home</Link>
         <br></br>
         <Link to="/marketstand">Go to Your Marketstand</Link>
-      </div>
+        </div>
+     
+     <div>
+        <img src={this.state.image} alt="" />
+     </div>
+     </div>
     )
   }
 }

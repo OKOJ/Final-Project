@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AuthService from './../components/AuthService';
 import {Link} from 'react-router-dom';
+import './SignupLogin.css'
 
 class Login extends Component {
   constructor() {
@@ -16,7 +17,6 @@ class Login extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
     this.Auth.login(this.state.email, this.state.password)
       .then(res => {
         // once user is logged in
@@ -39,6 +39,7 @@ class Login extends Component {
     return (
       <div className="container">
         <h1>Login</h1>
+        <br></br>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email address:</label>
@@ -58,9 +59,12 @@ class Login extends Component {
                    id="pwd"
                    onChange={this.handleChange}/>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <br></br>
+          <button type="submit" className="btn btn-success">Submit</button>
         </form>
-        <p>Don't have an account?<Link to="/signup"> Signup</Link></p>
+        <br></br>
+        <h5>Don't have an account?    <Link to="/signup"> Signup</Link> </h5>   
+        
       </div>
 
     );

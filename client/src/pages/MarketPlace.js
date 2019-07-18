@@ -96,3 +96,5 @@ class MarketPlace extends Component {
 
 
 export default withAuth(MarketPlace);
+
+// export default MarketPlace;

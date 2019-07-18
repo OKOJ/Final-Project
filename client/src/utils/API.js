@@ -21,14 +21,28 @@ export default {
     });
   },
 
+  // sign: (returnData) => {
+  //   return axios.post('/api/sign', {
+  //     returnData
+  //   })
+  // },
+
+  sign: (fileName, fileType) => {
+    return axios.post('/api/sign', {
+      fileName,
+      fileType
+    })
+  },
+
   //create product database
-  postProduct: (userId, products, price, quantity, image, description) => {
+  postProduct: (userId, products, price, quantity, fileName, fileType, description) => {
     return axios.post('/api/product', {
       userId,
       products,
       price,
       quantity,
-      image,
+      fileName,
+      fileType,
       description
     });
   },

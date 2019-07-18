@@ -2,19 +2,27 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
+const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
-var fs = require('fs');
-var AWS = require('aws-sdk');
-new AWS.Config({
-  accessKeyId: process.env.ACCESS_KEY_ID,
-  secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  region: "us-west-2"
+const aws = require('aws-sdk');
+aws.config.update({
+  region: "us-west-2",
+  accessKeyId: process.AKIAIYDXNVSMZ2F6GLRQ,
+  secretAccessKey: process.jTsDj0asnKL2I74cFmDy0qug8626ngKjZhiqTLWB,
+
+
+
+  // accessKeyId: process.env.ACCESS_KEY_ID,
+  // secretAccessKey: process.env.SECRET_ACCESS_KEY
+  
 });
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
-var s3Bucket = new AWS.S3( { params: {Bucket: 'marketplacephotos'} } );
+
+// const S3_BUCKET = process.env.bucket
+const s3 = new aws.S3();  // Create a new instance of S3
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");
@@ -24,7 +32,7 @@ const auth = require("./config/auth");
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
-  next();
+  return next();
 });
 
 //log all requests to the console
@@ -33,6 +41,7 @@ app.use(morgan('dev'));
 // Setting up express to use json and set it to req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 //app.use(bodyParser.json({limit: '1000000kb'}));
 app.use(bodyParser.json());
@@ -62,38 +71,54 @@ app.post('/api/signup', (req, res) => {
 });
 
 //PRODUCT ROUTE
-app.post("/api/product",  async (req, res) => {
-  console.log('req.body: ', req.body);
-  let buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')
-  let data = {
-    Bucket: s3Bucket,
-    Key: req.body.userId, 
-    Body: buf,
-    ContentEncoding: 'base64',
-    ContentType: 'image/jpeg'
+
+
+//////////////////////////////////////////////////////
+app.post("/api/sign", async (req, res) => {
+  console.log('req.body: ', req.body)
+  let s3Params = {
+    Bucket: 'marketplacephotos',
+    Key: req.body.fileName, 
+    Expires: 500,
+    ContentType: req.body.fileType,
+    ACL: 'public-read'
   };
-  await s3Bucket.putObject(data, function(err, data){
-      if (err) { 
-        console.log(err);
-        console.log('Error uploading data: ', data); 
-      } else {
-        console.log('data: ', data);
-        console.log('succesfully uploaded the image!');
-      }
+  // Make a request to the S3 API to get a signed URL which we can use to upload our file
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      res.json({success: false, error: err})
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://marketplacephotos.s3.amazonaws.com/${req.body.fileName}`
+    };
+    // Send it all back
+    res.json({success:true, data:{returnData}});
   });
-  //TODO
-  //req.body.image = data.url || "";
-  db.Product.create(req.body)
-  .then(dbProduct => 
-    {
-      return db.User.findByIdAndUpdate(req.body.userId, { $push: { products: dbProduct._id } }, { new: true })
-      //res.json(data)
-    })
-      .then(dbUser => res.json(dbUser))
-  .catch(err => {
-    console.log(err)
-    res.status(400).json(err)});
 });
+//////////////////////////////////////////////////////
+
+app.post("/api/product",  async (req, res) => {
+  console.log('req.body========: ', req.body.price);
+    db.Product.create({
+      products: req.body.products,
+      price: req.body.price,
+      quantity: req.body.quantity,
+      description: req.body.description,
+      image: req.body.image
+    }).then(dbProduct => 
+        {
+          return db.User.findByIdAndUpdate(req.body.userId, { $push: { products: dbProduct._id } }, { new: true })
+          //res.json(data)
+        }
+      )
+      .then(dbUser => res.json(dbUser))
+      .catch(err => {
+        console.log(err)
+        res.status(400).json(err)
+      });
+  });
 
 // GET ALL // ADDRESS ROUTE
 app.get("/api/user/address", (req, res) => {

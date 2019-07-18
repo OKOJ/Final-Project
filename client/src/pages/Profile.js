@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import withAuth from './../components/withAuth';
 import API from './../utils/API';
 import { Link } from 'react-router-dom';
-import ReactFileReader from 'react-file-reader';
+// import ReactFileReader from 'react-file-reader';
 import './Profile.css'
 
 
@@ -15,16 +16,50 @@ class Profile extends Component {
     email: ""
   };
 
-  handleFiles = (files) => {
+  //handleFiles = (files) => {
     // if(files.fileList[0].size > 100000){
-
     //   alert("Please upload image smaller than 100kb ")
     //   return false;
     // }
-    this.setState({
+   // this.setState({
+  //  image: files.base64[0]
+   // });
+  //}
 
-      image: files.base64[0]
-    });
+  handleUpload = (ev) => {
+    let file = this.uploadInput.files[0];
+    // Split the filename to get the name and type
+    let fileParts = this.uploadInput.files[0].name.split('.');
+    let fileName = fileParts[0];
+    let fileType = fileParts[1];
+    console.log("Preparing the upload");
+    API.sign(fileName, fileType).then(response => {
+      console.log("yo: ", response)
+      var returnData = response.data.data.returnData;
+      var signedRequest = returnData.signedRequest;      
+      var url = returnData.url;
+      this.setState({url: url})
+      console.log("Recieved a signed request " + signedRequest);
+
+      delete axios.defaults.headers.common["Authorization"]
+            
+      axios({
+        method: 'PUT',
+        url: signedRequest,
+        body: file,
+        headers: {
+          'Content-Type': fileType,
+          'x-amz-acl': 'public-read'
+        }
+      }).then(result => {
+        console.log('result: ', result);
+        console.log("Response from s3")
+        this.setState({success: true});
+      })
+      .catch(error => {
+        console.log("ERROR " + JSON.stringify(error));
+      })
+    })
   }
 
   handleChange = event => {
@@ -52,7 +87,7 @@ class Profile extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.description)
+    API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.fileName, this.state.fileType, this.state.description)
     .then( res => {
       console.log(res.data);
       
@@ -82,7 +117,8 @@ class Profile extends Component {
         <h1>What would you like to put on a market today.</h1>
         {/* <p>Username: {this.state.username}</p>
         <p>Email: {this.state.email}</p> */}
-        <div id="vendors-form">
+        <div className="row">
+        <div id="vendors-form  m-4">
           <div className="form-group" >
             <label htmlFor="product">Product:</label>
             <input className="form-control"
@@ -124,16 +160,25 @@ class Profile extends Component {
                    onChange={this.handleChange}/>
           </div>
 
-          <div className="form-group ">
-          <ReactFileReader fileTypes={[".png, .jpg"]}
+         
+          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} >Submit</button>
+
+
+          </div>
+          <div className="form-group m-4">
+          {/* <ReactFileReader fileTypes={[".png, .jpg"]}
                            base64={true} 
                            multipleFiles={true} 
                            handleFiles={this.handleFiles}>
             <button className='btn btn-primary'>Upload Image</button>
-          </ReactFileReader>
+          </ReactFileReader> */}
+          <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
+          <br/>
+          <button onClick={this.handleUpload}>UPLOAD</button>
+ 
          
           </div>
-          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} >Submit</button>
+        
         </div>
       
         <br></br>

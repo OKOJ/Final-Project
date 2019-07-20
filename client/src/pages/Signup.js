@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
+import Navbar from '../components/Navbar';
 import './SignupLogin.css'
 
 class Signup extends Component {
@@ -36,6 +37,9 @@ class Signup extends Component {
 
   render() {
     return (
+      <div>
+        <Navbar />
+      
       <div className="container">
         <h1>Signup</h1>
         <br></br>
@@ -92,6 +96,7 @@ class Signup extends Component {
         </form>
         <br></br>
         <h5>Have an account?   <Link to="/login">Login</Link> </h5>
+      </div>
       </div>
     );
   }

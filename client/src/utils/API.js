@@ -9,16 +9,30 @@ export default {
   getAll: (address) => {
     return axios.get(`/api/user/address`);
   },
-  
+
   // sign up a user to our service
-  signUpUser: (username, email, password, address,contact) => {
+  signUpUser: (username, email, password, address, contact) => {
     return axios.post('/api/signup', {
-      username, 
-      email, 
-      password, 
-      address, 
+      username,
+      email,
+      password,
+      address,
       contact
     });
+  },
+
+  // sign: (returnData) => {
+  //   return axios.post('/api/sign', {
+  //     returnData
+  //   })
+  // },
+
+  sign: (fileBody, fileName, fileType) => {
+    return axios.post('/api/sign', {
+      fileBody,
+      fileName,
+      fileType
+    })
   },
 
   //create product database
@@ -36,6 +50,11 @@ export default {
   //  products by user
   getUserProducts: (id) => {
     return axios.get(`/api/user/${id}/products`);
+
+  },
+
+  deleteProduct: (id) => {
+    return axios.delete(`/api/product/${id}`);
 
   }
 

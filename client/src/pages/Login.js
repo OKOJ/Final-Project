@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AuthService from './../components/AuthService';
 import {Link} from 'react-router-dom';
+import Navbar from '../components/Navbar';
 import './SignupLogin.css'
 
 class Login extends Component {
@@ -21,7 +22,13 @@ class Login extends Component {
       .then(res => {
         // once user is logged in
         // take them to their profile page
-        this.props.history.replace(`/profile`);
+        // window.location.reload()
+        const location = {
+          pathname: '/profile',
+        }
+        this.props.history.push(location)
+        // this.props.history.replace(`/profile`);
+        
       })
       .catch(err => {
         alert(err.response.data.message)
@@ -37,6 +44,8 @@ class Login extends Component {
 
   render() {
     return (
+      <>
+      <Navbar />
       <div className="container">
         <h1>Login</h1>
         <br></br>
@@ -66,6 +75,7 @@ class Login extends Component {
         <h5>Don't have an account?    <Link to="/signup"> Signup</Link> </h5>   
         
       </div>
+      </>
 
     );
   }

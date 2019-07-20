@@ -10,7 +10,12 @@ class Navbar extends Component {
     }
 
     showNavigation = () => {
+        console.log(this.Auth)
+        console.log(this.props)
+        console.log(this.Auth.loggedIn())
         if (this.Auth.loggedIn()) {
+
+            // if (this.props.user.id) {
             return (
                 <ul className="navbar-nav">
                     <li className="nav-item">
@@ -42,7 +47,7 @@ class Navbar extends Component {
                 {/* <div className="container"> */}
             
                 <div className="logo">
-                    <Link className="navbar-brand" to="/">Makro-Marker</Link>
+                    <Link className="navbar-brand" to="/">Makro-Market</Link>
                     <div className="moto">from our garden to Your table</div>
                     </div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

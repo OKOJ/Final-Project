@@ -2,49 +2,54 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-// import withAuth from './../components/withAuth';
+import withAuth from './../components/withAuth';
 import Modal from './../components/Modal/Modal';
 
 import Geocode from "react-geocode"
  
-// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+// Google Maps Geocoding API key
 Geocode.setApiKey("AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8");
  
-// Enable or disable logs. Its optional.
+// Enable or disable logs
 Geocode.enableDebug();
 
 
 class MarketPlace extends Component {
 
+    // when the state updates, locations will update with the content we pass it
     state = {
         locations: []
     }
 
-
-    handleChange = event => { 
-        // work in here
-    } 
-
+    // The componentDidMount() method runs after the 
+    // component output has been rendered to the DOM.
     componentDidMount() {
 
-        API.getAll().then(res => {
+        // calling the API.getAll method so we can get all
+        // of our items out of the DB that have an address.
+        API.getAll(this.props.user.id).then(res => {
             const userMarkers = res.data;
         
             const locations = [];
             const requests = [];
+
+            // .forEach will get each item out of the array
             userMarkers.forEach(({address}) => {
 
-                // give it address and get back the lon and lat
+                // Geocode will get us a lat and lng from the address that we pass it.
+                // We then push the lat, lng to requests array
                 requests.push(Geocode.fromAddress(address).then(response => {
                         const { lat, lng } = response.results[0].geometry.location;
                         locations.push({lat, lng});
                     },
+                    // if error, console log it so we can see
                     error => {
                       console.error(error);
                     }
                   ));
             })
-
+            // Promise.all will update our state once we get back *ALL*
+            // of our lat, lng back from our API.
             Promise.all(requests).then(() => this.setState({ locations }))
         });
         
@@ -72,11 +77,8 @@ class MarketPlace extends Component {
         });
     }
     
-    
-    
-    
-    // get the response back, map over it, display these results ON the map w/ pins
-    //along with search button for modal to
+    // render and return the content and pass in props so this can
+    // be used on our Maps component.
     render() {
         return(
             <>
@@ -110,6 +112,6 @@ class MarketPlace extends Component {
 }
 
 
-// export default withAuth(MarketPlace);
+// export default MarketPlace;
+export default withAuth(MarketPlace);
 
-export default MarketPlace;

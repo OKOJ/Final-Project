@@ -14,21 +14,36 @@ class MarketStand extends Component {
         products: []
     };
 
-    componentDidMount() {
-        console.log(this.props)
+    reload = () => {
+        // console.log(this.props)
         API.getUserProducts(this.props.user.id).then(res => {
-            console.log(res)
-            console.log(res.data.products)
+            // console.log(res)
+            // console.log(res.data.products)
             console.log(res.data.email)
             this.setState({
                 username: res.data.username,
                 email: res.data.email,
                 products: res.data.products
             })
-        }); 
+
+        });
+    };
+
+    componentDidMount() {
+        // console.log(this.props)
+        API.getUserProducts(this.props.user.id).then(res => {
+            // console.log(res)
+            // console.log(res.data.products)
+            console.log(res.data.email)
+            this.setState({
+                username: res.data.username,
+                email: res.data.email,
+                products: res.data.products
+            })
+        });
     }
 
-// get from the db all the product // update the state array
+    // get from the db all the product // update the state array
 
     render() {
         return (
@@ -39,19 +54,21 @@ class MarketStand extends Component {
                 {this.state.products.map(product => {
 
                     return (
-                        <ProductCard 
+                        <ProductCard
                             key={product._id}
+                            id={product._id}
                             product={product}
-                        /> 
+                            reload={this.reload}
+                        />
                     )
                 }
                 )}
 
-                
-            
-               <div>
+
+
+                <div>
                     <Link to="/profile">Go to Profile</Link>
-               </div>
+                </div>
             </div>
             </>
         )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/AuthService';
+import Modal from './components/Modal/Modal';
 //import withAuth from './components/withAuth'; 
 //import Hero from './components/Hero'
 // import Maps from './components/Map'

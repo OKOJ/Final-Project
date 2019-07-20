@@ -18,9 +18,10 @@ class ProductCard extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
+        this.state = {};
     };
 
-    deleteProduct = event => {
+    deleteProductButton = event => {
         // When the form is submitted, prevent its default behavior, get recipes update the recipes state
         // event.preventDefault();
         console.log(event)
@@ -50,7 +51,7 @@ class ProductCard extends Component {
                             Quantity: {this.props.product.quantity}
                         </Card.Text>
                         <Button
-                            onClick={() => this.deleteProduct(this.props.id)}
+                            onClick={() => this.deleteProductButton(this.props.id)}
                             variant="warning">Delete</Button>
                     </Card.Body>
                 </Card>

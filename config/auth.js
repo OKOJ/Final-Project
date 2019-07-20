@@ -12,7 +12,7 @@ module.exports = {
           if (isMatch && !err) {
             let token = jwt.sign({ id: user._id, email: user.email, firebaseKey }, process.env.SERVER_SECRET, { expiresIn: 129600 }); // Sigining the token
             resolve({ success: true, message: "Token Issued!", token: token, user: user });
-            let token = jwt.sign({
+             token = jwt.sign({
               id: user._id,
               email: user.email
             }, process.env.SERVER_SECRET, {

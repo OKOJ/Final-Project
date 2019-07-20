@@ -15,6 +15,7 @@ import API from "../../utils/API";
 class ProductCard extends Component {
 
 
+    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
     };

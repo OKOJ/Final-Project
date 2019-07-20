@@ -14,7 +14,7 @@ new AWS.Config({
 });
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
-var s3Bucket = new AWS.S3( { params: {Bucket: 'marketplacephotos'} } );
+var s3Bucket = new AWS.S3({ params: { Bucket: 'marketplacephotos' } });
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");
@@ -36,10 +36,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //app.use(bodyParser.json({limit: '1000000kb'}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.error(err));
 
@@ -58,53 +58,54 @@ app.post('/api/signup', (req, res) => {
     .then(data => res.json(data))
     .catch(err => {
       console.log(err)
-      res.status(400).json(err)});
+      res.status(400).json(err)
+    });
 });
 
 //PRODUCT ROUTE
-app.post("/api/product",  async (req, res) => {
+app.post("/api/product", async (req, res) => {
   console.log('req.body: ', req.body);
-  let buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')
+  let buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""), 'base64')
   let data = {
     Bucket: s3Bucket,
-    Key: req.body.userId, 
+    Key: req.body.userId,
     Body: buf,
     ContentEncoding: 'base64',
     ContentType: 'image/jpeg'
   };
-  await s3Bucket.putObject(data, function(err, data){
-      if (err) { 
-        console.log(err);
-        console.log('Error uploading data: ', data); 
-      } else {
-        console.log('data: ', data);
-        console.log('succesfully uploaded the image!');
-      }
+  await s3Bucket.putObject(data, function (err, data) {
+    if (err) {
+      console.log(err);
+      console.log('Error uploading data: ', data);
+    } else {
+      console.log('data: ', data);
+      console.log('succesfully uploaded the image!');
+    }
   });
   //TODO
   //req.body.image = data.url || "";
   db.Product.create(req.body)
-  .then(dbProduct => 
-    {
+    .then(dbProduct => {
       return db.User.findByIdAndUpdate(req.body.userId, { $push: { products: dbProduct._id } }, { new: true })
       //res.json(data)
     })
-      .then(dbUser => res.json(dbUser))
-  .catch(err => {
-    console.log(err)
-    res.status(400).json(err)});
+    .then(dbUser => res.json(dbUser))
+    .catch(err => {
+      console.log(err)
+      res.status(400).json(err)
+    });
 });
 
 // GET ALL // ADDRESS ROUTE
 app.get("/api/user/address", (req, res) => {
   db.User.find({})
-  .then(data => {
-    if(data) {
-      res.json(data);
-    } else {
-      res.status(404).send({success: false, message: 'No user found'});
-    }
-  }).catch(err => res.status(400).send(err))
+    .then(data => {
+      if (data) {
+        res.json(data);
+      } else {
+        res.status(404).send({ success: false, message: 'No user found' });
+      }
+    }).catch(err => res.status(400).send(err))
 })
 
 
@@ -112,24 +113,32 @@ app.get("/api/user/address", (req, res) => {
 // to access
 app.get('/api/user/:id', isAuthenticated, (req, res) => {
   db.User.findById(req.params.id)
-  //.populate("product")
-  .then(data => {
-    if(data) {
-      res.json(data);
-    } else {
-      res.status(404).send({success: false, message: 'No user found'});
-    }
-  }).catch(err => res.status(400).send(err));
+    //.populate("product")
+    .then(data => {
+      if (data) {
+        res.json(data);
+      } else {
+        res.status(404).send({ success: false, message: 'No user found' });
+      }
+    }).catch(err => res.status(400).send(err));
 });
 
 app.get('/api/user/:id/products', isAuthenticated, (req, res) => {
-  db.User.findById({_id: req.params.id})
-  .populate("products")
-  .then(dbUser => {
-    console.log(dbUser)
-    res.json(dbUser)
-  }).catch(err => res.status(400).send(err));
+  db.User.findById({ _id: req.params.id })
+    .populate("products")
+    .then(dbUser => {
+      console.log(dbUser)
+      res.json(dbUser)
+    }).catch(err => res.status(400).send(err));
 
+});
+
+app.delete("/api/product/:id", isAuthenticated, (req, res) => {
+  console.log(req.params.id)
+  db.Product.deleteOne({ _id: req.params.id })
+    .then(dbProduct => {
+      res.json(dbProduct);
+    });
 });
 
 
@@ -156,10 +165,10 @@ app.use(function (err, req, res, next) {
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });

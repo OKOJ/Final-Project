@@ -36,23 +36,33 @@ class ProductCard extends Component {
     render() {
         return (
             <div >
-                <Card style={{ width: '18rem', backgroundColor: 'lightblue' }}>
+                <Card style={{ width: '18rem', backgroundColor: "lightblue" }}>
 
                     <Card.Img variant="top" src={this.props.product.image} />
 
                     <Card.Body>
 
                         <Card.Title>
-                            {this.props.product.products}
+                            {this.props.product.products.toUpperCase()}
                         </Card.Title>
 
                         <Card.Text>
-                            Price: $ {this.props.product.price}
-                            Quantity: {this.props.product.quantity}
+                            <p>
+                                Price: $ {this.props.product.price}
+                            </p>
+                            <p>
+                                Quantity: {this.props.product.quantity}
+                            </p>
+                            <p>
+                                Description: {this.props.product.description}
+                            </p>
                         </Card.Text>
                         <Button
                             onClick={() => this.deleteProductButton(this.props.id)}
-                            variant="warning">Delete</Button>
+                            variant="warning" block>Pickup/Remove</Button>
+                        <p>
+                            <Button href="https://venmo.com/" variant="info" block>Venmo</Button>
+                        </p>
                     </Card.Body>
                 </Card>
             </div>

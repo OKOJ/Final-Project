@@ -13,7 +13,7 @@ const morgan = require('morgan'); // used to see requests
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
 
-/ /*const s3 = new aws.S3({params: {Bucket: 'marketplacephotos'}});  // Create a new instance of S3
+
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");

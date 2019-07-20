@@ -1,56 +1,46 @@
 .modal-wrapper {
-    background-color: ghostwhite;
-    font-family:'Sriracha';
+    border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     margin: 100px auto 0;
     transition: all .8s;
-    width: 20%;
-    margin-top: 10%;
-    position: absolute;
-    top: 60px;
-    left: 800px;
-    right: 350px;
-    bottom: 40px;
+    width: 35%;
+    position: relative;
+    left: 30%;
+    bottom: 750px;
     
 }
 
 .modal-header {
-    font-family:'Cabin Sketch';
-    color: ghostwhite;
+    background: #263238;
     height: 40px;
     line-height: 40px;
-    text-align: auto;
-    border: none;
-    
-    
+    padding: 5px 20px;
+    text-align: right;
 }
 
 .modal-header h3 {
+    font-family:'Cabin Sketch';
     color: ghostwhite;
-    font-size: 19px;
     float: left;
     margin: 0;
     padding: 0;
-    
 }
 
 .modal-body {
+    font-family:'Cabin Sketch';
     padding: 10px 15px;
     text-align: center;
-
-    top: 90px;
-   
+     background-color: rgba(48, 49, 48, 0.42);
 }
 
 .modal-footer {
+    background: #263238;
     height: 35px;
     padding: 15px;
-    margin-top: 160%;
-    border: none;
 }
 
 .close-modal-btn {
-    color: ghostwhite;
+    color: white;
     cursor: pointer;
     float: right;
     font-size: 30px;
@@ -62,37 +52,22 @@
     color: black;
 }
 
-.btn-cancel, .btn-continue {
-    background-color: rgba(48, 49, 48, 0.42);
-    border: none;
-    color: ghostwhite;
-    cursor: pointer;
-    font-weight: bold;
-    outline: none;
-    padding: 10px;
-}
+
 
 .btn-cancel {
+    font-family:'Cabin Sketch';
     background-color: #b71c1c;
     float: left;
-    
-}
-
-.btn-continue {
-    background-color: #1b5e20;
-    float: right;
 }
 
 .back-drop {
     background-color: rgba(48, 49, 48, 0.42);
     height: 100%;
-    position: relative;
+    position: fixed;
     transition: all 1.3s;
     width: 100%;
 }
 
-
-/*Search Box*/
 .open-modal-btn {
     font-family:'Cabin Sketch';
     color: ghostwhite;
@@ -104,7 +79,7 @@
     font-size: 20px;
     background-color: rgba(48, 49, 48, 0.42);
     position: absolute;
-    top: 18%;
+    top: 13%;
     left: 800px;
     right: 50px;
    

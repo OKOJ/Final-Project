@@ -12,6 +12,7 @@ Geocode.setApiKey("AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8");
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
 
+
 class MarketPlace extends Component {
 
     state = {
@@ -45,8 +46,11 @@ class MarketPlace extends Component {
 
             Promise.all(requests).then(() => this.setState({ locations }))
         });
+        
     }
-    
+
+     
+
     constructor() {
         super();
 
@@ -66,7 +70,7 @@ class MarketPlace extends Component {
             isShowing: false
         });
     }
-
+    
     
     
     
@@ -77,15 +81,24 @@ class MarketPlace extends Component {
             <>
                 <Maps locations={this.state.locations}/>
                 
-                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
                 
-                <button className="open-modal-btn" onClick={this.openModalHandler}>Search!</button>
+                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+
+                <button className="open-modal-btn" onClick={this.openModalHandler}>Search</button>
 
                 <Modal
                     className="modal"
                     show={this.state.isShowing}
                     close={this.closeModalHandler}>
-                        
+                       
+            <form>
+            <input value={this.state.product} name='product' onChange={this.inputChange} type='text' placeholder='Product Name'/>
+
+           
+            <button onClick={this.onSubmit}>
+            submit
+            </button>
+            </form>
                 </Modal>
             
             </>

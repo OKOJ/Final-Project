@@ -8,18 +8,12 @@ const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
 
 
-// const aws = require('aws-sdk');
-// aws.config.update({
-//   region: "us-west-2",
-//   accessKeyId: "AKIARRXNWA3R4D5ZO25R",
-//   secretAccessKey: "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",
-// });
+
 
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
 
-// const S3_BUCKET = process.env.bucket
-// /*const s3 = new aws.S3({params: {Bucket: 'marketplacephotos'}});  // Create a new instance of S3
+/ /*const s3 = new aws.S3({params: {Bucket: 'marketplacephotos'}});  // Create a new instance of S3
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");

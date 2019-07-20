@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-// import withAuth from './../components/withAuth';
-import Modal from './../components/Modal/Modal';
+import withAuth from './../components/withAuth';
+// import Modal from './../components/Modal/Modal';
 
 import Geocode from "react-geocode"
  
@@ -34,13 +34,13 @@ class MarketPlace extends Component {
             const requests = [];
 
             // .forEach will get each item out of the array
-            userMarkers.forEach(({address}) => {
+            userMarkers.forEach((user) => {
 
                 // Geocode will get us a lat and lng from the address that we pass it.
                 // We then push the lat, lng to requests array
-                requests.push(Geocode.fromAddress(address).then(response => {
+                requests.push(Geocode.fromAddress(user.address).then(response => {
                         const { lat, lng } = response.results[0].geometry.location;
-                        locations.push({lat, lng});
+                        locations.push({lat, lng, user});
                     },
                     // if error, console log it so we can see
                     error => {
@@ -90,7 +90,7 @@ class MarketPlace extends Component {
 
                 <button className="open-modal-btn" onClick={this.openModalHandler}>Search</button>
 
-                <Modal
+                {/* <Modal
                     className="modal"
                     show={this.state.isShowing}
                     close={this.closeModalHandler}>
@@ -103,7 +103,7 @@ class MarketPlace extends Component {
             submit
             </button>
             </form>
-                </Modal>
+                </Modal> */}
             
             </>
         )
@@ -112,6 +112,6 @@ class MarketPlace extends Component {
 }
 
 
-export default MarketPlace;
-// export default withAuth(MarketPlace);
+// export default MarketPlace;
+export default withAuth(MarketPlace);
 

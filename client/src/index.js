@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
+import MyMarketStand from './pages/MyMarketStand'
 import Footer from './components/Footer'
 import Wrapper from './components/Wrapper';
 
@@ -32,6 +33,7 @@ ReactDOM.render(
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/marketplace" component={MarketPlace} />
             <Route  path="/marketstand" component ={MarketStand} />
+            <Route  path="/marketstand/:id" component ={MyMarketStand} />
             <Footer />
         </Wrapper>
     </Router>

@@ -6,7 +6,7 @@ export default {
     return axios.get(`/api/user/${id}`);
   },
 
-  getAll: (address) => {
+  getAll: () => {
     return axios.get(`/api/user/address`);
   },
 

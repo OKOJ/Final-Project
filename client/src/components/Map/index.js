@@ -1,16 +1,22 @@
 // require react as well as whatever else we need to bring onto the page
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+// import ModalPage from '../ModalPage';
+
 import "./maps.css"
 
 // "Marker" will handle what happens when the user enters in their address for the map.
 // in this case, Maker will add an image on their address on the map to show where the
 // user is located and it will also add an onClick event so that we can show their produts
-const Marker = () => {
+const Marker = props => {
 
   // function that will handle our click event on the pictures/pins
   function handleClick() {
-    console.log("clicked marker")
+    console.log("clicked marker", props.user);
+    console.log('location', props.user.location)
+
+    
+
 
     // add code here that we want to happen when we click on the image
    }
@@ -60,6 +66,7 @@ class Maps extends Component {
                           key={index}
                           lat={location.lat}
                           lng={location.lng}
+                          user={location.user}
                         />
                       )
                   })}

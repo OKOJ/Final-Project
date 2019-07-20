@@ -27,22 +27,22 @@ export default {
   //   })
   // },
 
-  sign: (fileName, fileType) => {
+  sign: (fileBody, fileName, fileType) => {
     return axios.post('/api/sign', {
+      fileBody,
       fileName,
       fileType
     })
   },
 
   //create product database
-  postProduct: (userId, products, price, quantity, fileName, fileType, description) => {
+  postProduct: (userId, products, price, quantity, image, description) => {
     return axios.post('/api/product', {
       userId,
       products,
       price,
       quantity,
-      fileName,
-      fileType,
+      image,
       description
     });
   },

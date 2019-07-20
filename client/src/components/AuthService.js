@@ -6,6 +6,7 @@ export default class AuthService {
     // Get a token
     return axios.post('api/login', { email: email, password: password })
       .then(res => {
+        console.log('res: ', res);
         // set the token once the user logs in
         this.setToken(res.data.token);
         // return the rest of the response
@@ -14,12 +15,14 @@ export default class AuthService {
   };
 
   getProfile = () => {
+    console.log('decode(this.getToken()): ', decode(this.getToken()))
     return decode(this.getToken());
   };
 
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken();
+    // console.log(token)
     return !!token && !this.isTokenExpired(token) // handwaiving here
   }
 

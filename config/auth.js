@@ -1,5 +1,6 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
+const firebaseKey = process.env.FIREBASE_KEY;
 
 module.exports = {
   logUserIn: function (email, password) {
@@ -9,7 +10,7 @@ module.exports = {
       }).then(user => {
         user.verifyPassword(password, (err, isMatch) => {
           if (isMatch && !err) {
-            let token = jwt.sign({ id: user._id, email: user.email }, process.env.SERVER_SECRET, { expiresIn: 129600 }); // Sigining the token
+            let token = jwt.sign({ id: user._id, email: user.email, firebaseKey }, process.env.SERVER_SECRET, { expiresIn: 129600 }); // Sigining the token
             resolve({ success: true, message: "Token Issued!", token: token, user: user });
           } else {
             reject({ success: false, message: "Authentication failed. Wrong password." });

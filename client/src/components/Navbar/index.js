@@ -10,7 +10,12 @@ class Navbar extends Component {
     }
 
     showNavigation = () => {
+        console.log(this.Auth)
+        console.log(this.props)
+        console.log(this.Auth.loggedIn())
         if (this.Auth.loggedIn()) {
+
+            // if (this.props.user.id) {
             return (
                 <ul className="navbar-nav">
                     <li className="nav-item">

@@ -6,23 +6,20 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
-const aws = require('aws-sdk');
-aws.config.update({
-  region: "us-west-2",
-  accessKeyId: process.AKIAIYDXNVSMZ2F6GLRQ,
-  secretAccessKey: process.jTsDj0asnKL2I74cFmDy0qug8626ngKjZhiqTLWB,
 
 
+// const aws = require('aws-sdk');
+// aws.config.update({
+//   region: "us-west-2",
+//   accessKeyId: "AKIARRXNWA3R4D5ZO25R",
+//   secretAccessKey: "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",
+// });
 
-  // accessKeyId: process.env.ACCESS_KEY_ID,
-  // secretAccessKey: process.env.SECRET_ACCESS_KEY
-  
-});
 const db = require('./models');
 const PORT = process.env.PORT || 3001;
 
 // const S3_BUCKET = process.env.bucket
-const s3 = new aws.S3();  // Create a new instance of S3
+// /*const s3 = new aws.S3({params: {Bucket: 'marketplacephotos'}});  // Create a new instance of S3
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");
@@ -74,33 +71,52 @@ app.post('/api/signup', (req, res) => {
 
 
 //////////////////////////////////////////////////////
-app.post("/api/sign", async (req, res) => {
-  console.log('req.body: ', req.body)
-  let s3Params = {
-    Bucket: 'marketplacephotos',
-    Key: req.body.fileName, 
-    Expires: 500,
-    ContentType: req.body.fileType,
-    ACL: 'public-read'
-  };
-  // Make a request to the S3 API to get a signed URL which we can use to upload our file
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      res.json({success: false, error: err})
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://marketplacephotos.s3.amazonaws.com/${req.body.fileName}`
-    };
-    // Send it all back
-    res.json({success:true, data:{returnData}});
-  });
-});
+
+
+// app.post("/api/sign", async (req, res) => {
+//   console.log('req.body: ', req.body)
+//   var buf = new Buffer(req.body.fileBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+
+//   let s3Params = {
+//     Key: req.body.fileName, 
+//     Body: buf,
+//     ContentType: req.body.fileType,
+//     ACL: 'public-read'
+//   };
+//   // Make a request to the S3 API to get a signed URL which we can use to upload our file
+//   s3.upload(s3Params, (err, data) => {
+//     if(err){
+//       console.log(`S3 error: ${err}`);
+//       res.json({success: false, error: err})
+//     }
+//     res.json({data});
+//   });
+  
+  // console.log('req.body: ', req.body)
+  // let s3Params = {
+  //   Bucket: 'marketplacephotos',
+  //   Key: req.body.fileName, 
+  //   Expires: 500,
+  //   ContentType: req.body.fileType,
+  //   ACL: 'public-read'
+  // };
+  // // Make a request to the S3 API to get a signed URL which we can use to upload our file
+  // s3.getSignedUrl('putObject', s3Params, (err, data) => {
+  //   if(err){
+  //     console.log(err);
+  //     res.json({success: false, error: err})
+  //   }
+  //   const returnData = {
+  //     signedRequest: data,
+  //     url: `https://marketplacephotos.s3.amazonaws.com/${req.body.fileName}`
+  //   };
+  //   // Send it all back
+  //   res.json({success:true, data:{returnData}});
+  // });
+//});
 //////////////////////////////////////////////////////
 
 app.post("/api/product",  async (req, res) => {
-  console.log('req.body========: ', req.body.price);
     db.Product.create({
       products: req.body.products,
       price: req.body.price,

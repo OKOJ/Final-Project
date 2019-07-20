@@ -21,6 +21,20 @@ export default {
     });
   },
 
+  // sign: (returnData) => {
+  //   return axios.post('/api/sign', {
+  //     returnData
+  //   })
+  // },
+
+  sign: (fileBody, fileName, fileType) => {
+    return axios.post('/api/sign', {
+      fileBody,
+      fileName,
+      fileType
+    })
+  },
+
   //create product database
   postProduct: (userId, products, price, quantity, image, description) => {
     return axios.post('/api/product', {

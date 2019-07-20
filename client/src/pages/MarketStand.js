@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
+import Navbar from '../components/Navbar';
 import API from './../utils/API';
 
 
@@ -46,6 +47,8 @@ class MarketStand extends Component {
 
     render() {
         return (
+            <>
+            <Navbar />
             <div>
 
                 {this.state.products.map(product => {
@@ -67,6 +70,7 @@ class MarketStand extends Component {
                     <Link to="/profile">Go to Profile</Link>
                 </div>
             </div>
+            </>
         )
     }
 }

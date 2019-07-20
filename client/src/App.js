@@ -5,7 +5,7 @@ import Modal from './components/Modal/Modal';
 //import withAuth from './components/withAuth'; 
 //import Hero from './components/Hero'
 // import Maps from './components/Map'
-//import Navbar from './components/Navbar'
+import Navbar from './components/Navbar'
 //import withAuth from './components/withAuth'; 
 
 
@@ -28,6 +28,9 @@ class App extends Component {
   render() {
     //console.log(process.env.REACT_APP_SECRET_CODE);
     return (
+      <div>
+        <Navbar />
+      
       <div className="App">
         <div className="App-header">
           {/* <h1>Welcome to ... </h1> */}
@@ -41,6 +44,7 @@ class App extends Component {
           <button type="button" className="btn btn-danger" onClick={this.handleLogout}>Logout</button> */}
         </p>
         {/* <Maps /> */}
+      </div>
       </div>
     );
   }

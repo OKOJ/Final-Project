@@ -11,7 +11,6 @@ import axios from "axios";
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-import Navbar from './components/Navbar';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
 import Footer from './components/Footer'
@@ -27,8 +26,6 @@ if(localStorage.getItem("id_token")) {
 ReactDOM.render(
     <Router>
        <Wrapper>
-        <div>
-            <Navbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
@@ -36,7 +33,6 @@ ReactDOM.render(
             <Route exact path="/marketplace" component={MarketPlace} />
             <Route  path="/marketstand" component ={MarketStand} />
             <Footer />
-        </div>
         </Wrapper>
     </Router>
     , document.getElementById('root')

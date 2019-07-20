@@ -21,13 +21,14 @@ const ProductSchema = new Schema({
         
     },
     image: {
-        type:
-        {
-            data: Buffer,
-            contentType: String
-    },
+        type: String,
         required: true
     }
+    
+        // fileName: String,
+        // fileType: String
+               
+
     
 });
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-import withAuth from './../components/withAuth';
+// import withAuth from './../components/withAuth';
 import Modal from './../components/Modal/Modal';
 
 import Geocode from "react-geocode"
@@ -27,7 +27,7 @@ class MarketPlace extends Component {
 
         // calling the API.getAll method so we can get all
         // of our items out of the DB that have an address.
-        API.getAll(this.props.user.id).then(res => {
+        API.getAll().then(res => {
             const userMarkers = res.data;
         
             const locations = [];
@@ -112,6 +112,6 @@ class MarketPlace extends Component {
 }
 
 
-// export default MarketPlace;
-export default withAuth(MarketPlace);
+export default MarketPlace;
+// export default withAuth(MarketPlace);
 

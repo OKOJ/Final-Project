@@ -2,7 +2,7 @@
 
 .navbar.navbar-expand-lg{
     /* background-color:yellowgreen; */
-    mix-blend-mode: screen;
+    /* mix-blend-mode: screen; */
     position: fixed;
     top: 0;
     width: 100%;
@@ -14,7 +14,6 @@
 .navbar-brand{
     font-family: 'Cabin Sketch', cursive;
     color:ghostwhite;
-    /* color: black; */
     font-size: 70px;
     height: max-content;
     font-weight: 900;
@@ -28,4 +27,5 @@
     color:ghostwhite;
     font-size: x-large;
     font-family:'Sriracha';
+    margin-left: 40px;
 }

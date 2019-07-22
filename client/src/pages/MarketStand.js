@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
 import Navbar from '../components/Navbar';
+import Wrapper from '../components/Wrapper';
+import Footer from '../components/Footer/footer'
 import API from './../utils/API';
+import './MarketStand.css'
 // import Button from 'react-bootstrap/Button';
 
 
@@ -22,7 +24,7 @@ class MarketStand extends Component {
         API.getUserProducts(this.props.user.id).then(res => {
             // console.log(res)
             // console.log(res.data.products)
-            console.log(res.data.email)
+            //console.log(res.data.email)
             this.setState({
                 username: res.data.username,
                 email: res.data.email,
@@ -35,35 +37,38 @@ class MarketStand extends Component {
     componentDidMount() {
         // console.log(this.props)
         this.reload()
-    }
+    };
 
-    // get from the db all the product // update the state array
+    goToEditProfile = () => {
+        this.props.history.replace('/profile');
+      };
 
     render() {
         return (
             <>
+            <Wrapper>
                 <Navbar />
+                <div className="containerMarketStand">
                 <div>
-
+                <button type="button" className="btn btn-success" onClick={this.goToEditProfile}>Go to your Profile</button>
+                </div>
+                <div>
                     {this.state.products.map(product => {
-
-                        return (
+                    return (
                             <ProductCard
                                 key={product._id}
                                 id={product._id}
                                 product={product}
                                 reload={this.reload}
                             />
-                        )
-                    }
-                    )}
-
-
-
-                    <div>
-                        <Link to="/profile">Go to Profile</Link>
-                    </div>
+                           )
+                    })
+                 }
+                 </div>
                 </div>
+                
+                </Wrapper>
+                <Footer />
             </>
         )
     }

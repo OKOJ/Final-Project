@@ -35,37 +35,24 @@ class ProductCard extends Component {
 
     render() {
         return (
-            <div >
-                <Card style={{ width: '18rem', backgroundColor: "lightblue" }}>
-
-                    <Card.Img variant="top" src={this.props.product.image} />
-
+            <>
+                <Card style={{ width: '360px', backgroundColor: "gold", color:'black', float: 'left', margin:'10px', padding:'5px' }}>
+                    <Card.Img variant="top" style={{ width: '350px',height: '350px'}} src={this.props.product.image} />
                     <Card.Body>
-
                         <Card.Title>
                             {this.props.product.products.toUpperCase()}
                         </Card.Title>
-
-                        <Card.Text>
-                            <p>
-                                Price: $ {this.props.product.price}
-                            </p>
-                            <p>
-                                Quantity: {this.props.product.quantity}
-                            </p>
-                            <p>
-                                Description: {this.props.product.description}
-                            </p>
-                        </Card.Text>
+                        <Card.Text> Price: $ {this.props.product.price} </Card.Text>
+                        <Card.Text> Quantity: {this.props.product.quantity} </Card.Text>
+                        <Card.Text> Description: {this.props.product.description} </Card.Text>
                         <Button
                             onClick={() => this.deleteProductButton(this.props.id)}
-                            variant="warning" block>Pickup/Remove</Button>
-                        <p>
-                            <Button href="https://venmo.com/" variant="info" block>Venmo</Button>
-                        </p>
+                            variant="success" >Pickup/Remove</Button>
+                            <a href="https://venmo.com/">< img src="https://bucknellian.net/wp-content/uploads/2017/02/Venmo-Color-900x900.png" alt="" width="60px"/></a>
+                            {/* <Button href="https://venmo.com/" variant="info" >Venmo</Button> */}
                     </Card.Body>
                 </Card>
-            </div>
+            </>
         );
     }
 }

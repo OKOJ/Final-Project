@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import AuthService from './../components/AuthService';
 import {Link} from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Wrapper from '../components/Wrapper'
+import Footer from '../components/Footer/footer'
 import './SignupLogin.css'
 
 class Login extends Component {
@@ -45,9 +47,10 @@ class Login extends Component {
   render() {
     return (
       <>
+      <Wrapper>
       <Navbar />
-      <div className="container">
-        <h1>Login</h1>
+      <div className="containerLogin">
+        <h2>Login</h2>
         <br></br>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
@@ -68,13 +71,14 @@ class Login extends Component {
                    id="pwd"
                    onChange={this.handleChange}/>
           </div>
-          <br></br>
+          <div>
           <button type="submit" className="btn btn-success">Submit</button>
-        </form>
-        <br></br>
-        <h5>Don't have an account?    <Link to="/signup"> Signup</Link> </h5>   
-        
+          <h2>Don't have an account?   <Link to="/signup"> Signup</Link></h2>
+          </div>
+        </form>        
       </div>
+      </Wrapper>
+      <Footer />
       </>
 
     );

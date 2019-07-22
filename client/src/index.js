@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
+import Team from './pages/Team'
 // import Wrapper from './components/Wrapper';
 
 
@@ -29,9 +30,10 @@ ReactDOM.render(
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile" component={Profile} />
             <Route exact path="/marketplace" component={MarketPlace} />
-            <Route  path="/marketstand" component ={MarketStand} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/marketstand" component ={MarketStand} />
+            <Route exact path="/team" component={Team} />
         {/* </Wrapper> */}
     </Router>
     , document.getElementById('root')

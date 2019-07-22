@@ -1,41 +1,13 @@
-import React, {Component} from "react";
-import { MDBContainer, MDBFooter } from "mdbreact";
-import { Link } from 'react-router-dom';
-//import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-// import Subscribe from './subscribe.js'
+import React from "react";
+import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody } from "mdbreact";
+import Footer from '../components/Footer/footer'
 
-class Footer extends Component {
-    render() {
-    return (
-        <MDBFooter style={{position: 'fixed', bottom: '0', backgroundColor:' gold', width: '100%', height:'60px',  left: '0'}}className="font-small pt-3 mt-4">
-          {/* <MDBContainer fluid className="text-center text-md-left">
-            <MDBRow>
-              <MDBCol md="8">
-                <h5 className="title">Makro-Market</h5>
-                <Subscribe />
-              </MDBCol>
-              <MDBCol md="4">
-                <h5 className="title">Connect</h5>
-                <ul>
-                  <li className="list-unstyled">
-                    <a href="#!">Link 1</a>
-                  </li>
-                  <li className="list-unstyled">
-                    <a href="#!">Link 2</a>
-                  </li>
-                  <li className="list-unstyled">
-                    <a href="#!">Link 3</a>
-                  </li>
-                  <li className="list-unstyled">
-                    <a href="#!">Link 4</a>
-                  </li>
-                </ul>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer> */}
-          <div className="footer-copyright text-center">
-            <MDBContainer fluid>
-              &copy; {new Date().getFullYear()} Develop by: <Link to='/team'>Da_<svg xmlns="http://www.w3.org/2500/svg" x="0px" y="0px" width="40" height="30" viewBox="0 0 192 192"
+const Team = () => {
+  return (
+    <MDBCard className="pb-4 text-center">
+      <MDBCardBody>
+        <h2 className="h1-responsive font-weight-bold">
+        <svg xmlns="http://www.w3.org/2500/svg" x="0px" y="0px" width="60" height="350" viewBox="0 0 192 192"
             style={{fill:'rgb(14, 13, 13)'}}>
             <g transform="translate(38.4,38.4) scale(0.6,0.6)">
               <g fill="none" fillRule="nonzero" stroke="none" strokeWidth="none" strokeLinecap="butt"
@@ -59,32 +31,113 @@ class Footer extends Component {
                   opacity="0"></path>
               </g>
             </g>
-          </svg></Link> 
-            </MDBContainer>
-          </div>
-        </MDBFooter>
-    )}}
+          </svg>  DA _ Underdogz team.
+        </h2>
+        <MDBRow className="text-md-left">
+          <MDBCol lg="6" md="12" className="mb-5">
+            <MDBCol md="4" lg="6" className="float-left">
+              <MDBCardImage
+              style={{width:'200px', height:'200px'}}
+              src="https://avatars3.githubusercontent.com/u/44297884?s=460&v=4"
+              className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
+              tag="img"
+              />
+            </MDBCol>
+            <MDBCol md="8" lg="6" className="float-right">
+              <h4 className="font-weight-bold mb-3">Corbin Brockbank</h4>
+              <h6 className="font-weight-bold grey-text mb-3">
+                Full Stack Web Developer
+              </h6>
+             
+              <a href="https://github.com/Corbin520" className="p-2 fa-lg fb-ic">
+              <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
+              </a>
+              <a href="https://www.linkedin.com/in/corbin-brockbank-173459168/" className="p-2 fa-lg tw-ic">
+              <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
+              </a>
+            
+            </MDBCol>
+          </MDBCol>
 
-// const Footer = () => {
-//     return (
-//         <MDBFooter style={{backgroundColor: 'lightgreen' }} className="font-small pt-4 mt-4">
-//             <MDBContainer fluid className="text-center text-md-left">
-//                 <MDBRow>
-//                     <MDBCol md="6">
-                        
-//                     </MDBCol>
-//                     <MDBCol md="6">
-                        
-//                     </MDBCol>
-//                 </MDBRow>
-//             </MDBContainer>
-//             <div className="footer-copyright text-center py-3">
-//                 <MDBContainer fluid>
-//                     &copy; {new Date().getFullYear()} Copyright:
-//                 </MDBContainer>
-//             </div>
-//         </MDBFooter>
-//     );
-// }
+          <MDBCol lg="6" md="12" className="mb-5">
+            <MDBCol md="4" lg="6" className="float-left">
+            <MDBCardImage
+            style={{width:'200px', height:'200px'}}
+              src="https://avatars0.githubusercontent.com/u/46852589?s=460&v=4"
+              className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
+              tag="img"
+              />
+            </MDBCol>
+            <MDBCol md="8" lg="6" className="float-right">
+              <h4 className="font-weight-bold mb-3">Emily Jonaitis</h4>
+              <h6 className="font-weight-bold grey-text mb-3">
+              Full Stack Web Developer
+              </h6>
+             
+              <a href="https://github.com/emilyfjonaitis" className="p-2 fa-lg fb-ic">
+              <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
+              </a>
+              <a href="#!" className="p-2 fa-lg yt-ic">
+              <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
+              </a>
+             
+            </MDBCol>
+          </MDBCol>
 
-export default Footer;
+          <MDBCol lg="6" md="12" className="mb-5">
+            <MDBCol md="4" lg="6" className="float-left">
+            <MDBCardImage
+            style={{width:'200px', height:'200px'}}
+              src="https://avatars3.githubusercontent.com/u/46357369?s=460&v=4"
+              className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
+              tag="img"
+              />
+            </MDBCol>
+            <MDBCol md="8" lg="6" className="float-right">
+              <h4 className="font-weight-bold mb-3">Marco Johns</h4>
+              <h6 className="font-weight-bold grey-text mb-3">
+              Full Stack Web Developer
+              </h6>
+             
+              <a href="https://github.com/MarcoJohns" className="p-2 fa-lg fb-ic">
+              <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
+              </a>
+              <a href="https://www.linkedin.com/in/marco-johns/" className="p-2 fa-lg tw-ic">
+              <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
+              </a>
+             
+            </MDBCol>
+          </MDBCol>
+
+          <MDBCol lg="6" md="12" className="mb-5">
+            <MDBCol md="4" lg="6" className="float-left">
+            <MDBCardImage
+            style={{width:'200px', height:'200px'}}
+              src="https://avatars1.githubusercontent.com/u/43624894?s=460&v=4"
+              className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
+              tag="img"
+              />
+            </MDBCol>
+            <MDBCol md="8" lg="6" className="float-right">
+              <h4 className="font-weight-bold mb-3">Oksana Jacoby</h4>
+              <h6 className="font-weight-bold grey-text mb-3">
+              Full Stack Web Developer
+              </h6>
+             
+              <a href="https://github.com/OKOJ" className="p-2 fa-lg gplus-ic">
+              <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
+              </a>
+              <a href="https://www.linkedin.com/in/oksana-jacoby-49190b170/" className="p-2 fa-lg li-ic">
+              <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
+              </a>
+              
+            </MDBCol>
+          </MDBCol>
+        </MDBRow>
+      </MDBCardBody>
+      <Footer />
+    </MDBCard>
+  );
+}
+
+export default Team;

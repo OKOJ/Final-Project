@@ -1,11 +1,18 @@
-.container{
-    width: auto;
+.containerSignup,
+.containerLogin{
+    width: 50%;
+    background-color: gold;
     /* background-color:yellowgreen; */
     /* mix-blend-mode: hard-light; */
-    padding: 35px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 140px;
+    padding: 40px 100px 5px;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: 120px;
     color: white;
-    font-size: 18px;
+    font-size: 22px;
+    border-radius: 1.5%;
+
 }
+
+
+

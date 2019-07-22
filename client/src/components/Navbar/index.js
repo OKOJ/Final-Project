@@ -10,14 +10,12 @@ class Navbar extends Component {
     }
 
     showNavigation = () => {
-        console.log(this.Auth)
-        console.log(this.props)
-        console.log(this.Auth.loggedIn())
         if (this.Auth.loggedIn()) {
-
-            // if (this.props.user.id) {
             return (
                 <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/marketplace">Marketplace</Link>
+                    </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/profile">Profile</Link>
                     </li>
@@ -43,9 +41,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg" >
-                {/* <div className="container"> */}
-            
+            <nav className="navbar navbar-expand-lg" >            
                 <div className="logo">
                     <Link className="navbar-brand" to="/">Makro-Market</Link>
                     <div className="moto">from our garden to Your table</div>
@@ -58,7 +54,6 @@ class Navbar extends Component {
                         </ul>
                         {this.showNavigation()}
                     </div>
-                {/* </div> */}
             </nav>
         )
     }

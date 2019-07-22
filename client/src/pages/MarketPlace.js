@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-// import withAuth from './../components/withAuth';
-import Modal from './../components/Modal/Modal';
-
 import Geocode from "react-geocode"
+import withAuth from './../components/withAuth';
+import Wrapper from '../components/Wrapper';
+import Footer from '../components/Footer/footer'
+// import Modal from './../components/Modal/Modal';
+
  
 // Google Maps Geocoding API key
 Geocode.setApiKey("AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8");
@@ -28,8 +30,8 @@ class MarketPlace extends Component {
         // calling the API.getAll method so we can get all
         // of our items out of the DB that have an address.
         API.getAll().then(res => {
+            console.log(res.data)
             const userMarkers = res.data;
-        
             const locations = [];
             const requests = [];
 
@@ -53,44 +55,41 @@ class MarketPlace extends Component {
             Promise.all(requests).then(() => this.setState({ locations }))
         });
         
-    }
+    };
+    
+    // constructor() {
+    //     super();
 
-     
+    //     this.state = {
+    //         isShowing: false
+    //     }
+    // }
 
-    constructor() {
-        super();
+    // openModalHandler = () => {
+    //     this.setState({
+    //         isShowing: true
+    //     });
+    // }
 
-        this.state = {
-            isShowing: false
-        }
-    }
-
-    openModalHandler = () => {
-        this.setState({
-            isShowing: true
-        });
-    }
-
-    closeModalHandler = () => {
-        this.setState({
-            isShowing: false
-        });
-    }
+    // closeModalHandler = () => {
+    //     this.setState({
+    //         isShowing: false
+    //     });
+    // }
     
     // render and return the content and pass in props so this can
     // be used on our Maps component.
     render() {
         return(
             <>
+            <Wrapper>
             <Navbar />
-                <Maps locations={this.state.locations}/>
-                
-                
-                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+                <Maps locations={this.state.locations} />
+                {/* { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
 
-                <button className="open-modal-btn" onClick={this.openModalHandler}>Search</button>
+                <button className="open-modal-btn" onClick={this.openModalHandler}>Search</button> */}
 
-                <Modal
+                {/* <Modal
                     className="modal"
                     show={this.state.isShowing}
                     close={this.closeModalHandler}>
@@ -103,8 +102,9 @@ class MarketPlace extends Component {
             submit
             </button>
             </form>
-                </Modal>
-            
+                </Modal> */}
+            </Wrapper>
+            <Footer />
             </>
         )
     }
@@ -112,6 +112,6 @@ class MarketPlace extends Component {
 }
 
 
-export default MarketPlace;
-// export default withAuth(MarketPlace);
+// export default MarketPlace;
+export default withAuth(MarketPlace);
 

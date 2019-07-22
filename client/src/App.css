@@ -7,14 +7,17 @@
   height:  -webkit-fill-available;
   
 }
-span{
+/* span{
   font-family: 'Cabin Sketch', cursive;
-  font-size: 28px;
+  font-size:150px;
   font-weight: 700;
-}
+} */
 
 h1{
-  font-family:'Sriracha';
+  /* font-family:'Sriracha'; */
+  font-family: 'Cabin Sketch', cursive;
+  font-size:150px;
+  font-weight: 700;
 }
 
 .App-header {
@@ -38,5 +41,7 @@ h1{
 .btn.btn-success{
   font-family:'Sriracha';
   font-size: 20px;
+  margin: 20px;
+  margin-left: 0;
 }
 

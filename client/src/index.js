@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+
 import registerServiceWorker from './registerServiceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from "axios";
@@ -13,9 +14,8 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
-import MyMarketStand from './pages/MyMarketStand'
-import Footer from './components/Footer'
-import Wrapper from './components/Wrapper';
+import Team from './pages/Team'
+// import Wrapper from './components/Wrapper';
 
 
 // Here is if we have an id_token in localStorage
@@ -26,15 +26,15 @@ if(localStorage.getItem("id_token")) {
 
 ReactDOM.render(
     <Router>
-       <Wrapper>
+       {/* <Wrapper> */}
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile" component={Profile} />
             <Route exact path="/marketplace" component={MarketPlace} />
-            <Route  path="/marketstand/:id" component={MarketStand} />
-            <Footer />
-        </Wrapper>
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/marketstand/:id" component={MarketStand} />
+            <Route exact path="/team" component={Team} />
+        {/* </Wrapper> */}
     </Router>
     , document.getElementById('root')
 );

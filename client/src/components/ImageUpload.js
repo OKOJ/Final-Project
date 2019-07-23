@@ -51,9 +51,12 @@ class ImageUpload extends Component {
     render() {
         return ( 
             <div>
-                {this.state.initImage && <form>
-                    {this.state.isUploading && <p> Uploading: {this.state.progress}% </p>}
-                    <FileUploader accept = "image/*"
+                {this.state.initImage && <div>
+                    <label>Image :</label>
+                    <br />
+                    {/* {this.state.isUploading && <p> Uploading: {this.state.progress}% </p>} */}
+                    <FileUploader 
+                        accept = "image/*"
                         name = "image"
                         randomizeFilename storageRef = { this.state.firebase.storage().ref("images") }
                         onUploadStart = { this.handleUploadStart }
@@ -61,7 +64,7 @@ class ImageUpload extends Component {
                         onUploadSuccess = { this.handleUploadSuccess }
                         onProgress = { this.handleProgress }
                     /> 
-                </form>}
+                </div>}
             </div>
         );
     }

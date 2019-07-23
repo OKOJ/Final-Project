@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
 import Navbar from '../components/Navbar';
+import Wrapper from '../components/Wrapper';
+import Footer from '../components/Footer/footer'
 import './SignupLogin.css'
 
 class Signup extends Component {
@@ -37,11 +39,11 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <>
+      <Wrapper>
         <Navbar />
-      
-      <div className="container">
-        <h1>Signup</h1>
+      <div className="containerSignup">
+        <h2>Signup</h2>
         <br></br>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
@@ -91,13 +93,16 @@ class Signup extends Component {
                     required
                     onChange={this.handleChange}/>
           </div>
-          <br></br>
+          <div>
           <button type="submit" className="btn btn-success">Submit</button>
+          <h2>Have an account?   <Link to="/login">Login</Link></h2>
+          </div>
         </form>
-        <br></br>
-        <h5>Have an account?   <Link to="/login">Login</Link> </h5>
+         
       </div>
-      </div>
+      </Wrapper>
+      <Footer />
+      </>
     );
   }
 }

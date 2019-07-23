@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import withAuth from './../components/withAuth';
 import API from './../utils/API';
-import { Link } from 'react-router-dom';
-// import ReactFileReader from 'react-file-reader';
+// import { Link } from 'react-router-dom';
 import './Profile.css';
 import Navbar from '../components/Navbar';
 import ImageUpload from '../components/ImageUpload';
+import Wrapper from '../components/Wrapper';
+import Footer from '../components/Footer/footer'
 
 const bucketName = 'gs://makro-market.appspot.com';
 
@@ -28,74 +29,10 @@ class Profile extends Component {
         image: ''
     };
 };
-  // state = {
-  //   username: "",
-  //   email: "",
-  //   product: '',
-  //   price: '',
-  //   quantity: '',
-  //   description: '',
-  //   image: ''
-  // };
 
-  // handleFiles = (files) => {
-  //   console.log('files: ', files)
-  // //   if(files.fileList[0].size > 100000){
-  // //     alert("Please upload image smaller than 100kb ")
-  // //     return false;
-  // //   }
-  // //  this.setState({
-  // //   image: files.base64[0]
-  // //  });
-  // var fileBody = files.base64[0];
-  // var fileName = files.fileList[0].name;
-  // var fileType = files.fileList[0].type;
-  // API.sign(fileBody, fileName, fileType).then(response => {
-  //   console.log('response: ', response)
-  // })
-  // }
-
-  // handleUpload = (ev) => {
-  //   let file = this.uploadInput.files[0];
-  //   // Split the filename to get the name and type
-  //   let fileParts = this.uploadInput.files[0].name.split('.');
-  //   let fileName = fileParts[0];
-  //   let fileType = fileParts[1];
-  //   console.log('file: ', file);
-  //   console.log('fileParts: ', fileParts);
-  //   console.log('fileType: ', fileType);
-  //   console.log("Preparing the upload");
-  //   API.sign(fileName, fileType).then(response => {
-  //     console.log(`Handle upload response: `+ response.data.data.returnData)
-  //     var returnData = response.data.data.returnData;
-  //     var signedRequest = returnData.signedRequest;      
-  //     var url = returnData.url;
-  //     this.setState({url: url})
-  //     console.log("Recieved a signed request " + signedRequest);
-
-  //     // delete axios.defaults.headers.common["Authorization"]
             
-  //     // axios({
-  //     //   method: 'PUT',
-  //     //   url: signedRequest,
-  //     //   body: file,
-  //     //   headers: {
-  //     //     'Content-Type': fileType,
-  //     //     'x-amz-acl': 'public-read'
-  //     //   }
-  //     // }).then(result => {
-  //     //   console.log('result: ', result);
-  //     //   console.log("Response from s3")
-  //     //   this.setState({success: true});
-  //     // })
-  //     // .catch(error => {
-  //     //   console.log("ERROR " + JSON.stringify(error));
-  //     // })
-  //   })
-  // }
-
   handleChange = event => {
-    console.log('event.target: ', event.target)
+    //console.log('event.target: ', event.target)
     const {name, value} = event.target;
     this.setState({
       [name]: value
@@ -115,8 +52,7 @@ class Profile extends Component {
   }
 
   handleClearForm = event => {
-    console.log(this)
-    //event.preventDefault();
+    //console.log(this)
     this.setState({ 
         product: '',
         price: '',
@@ -133,19 +69,14 @@ class Profile extends Component {
     event.preventDefault();
     API.postProduct(this.props.user.id, this.state.product, this.state.price, this.state.quantity, this.state.image, this.state.description)
     .then( res => {
-      console.log(res.data);
-      
+     // console.log(res.data);
       this.handleClearForm();
-      // document.getElementById("vendors-form").reset();
     })
     .catch(err => alert(err));
   };
 
   componentWillMount() {
-    console.log(this.props)
-    //window.location.reload();
-    console.log(this.props.user.id)
-    
+   
     if (this.props.user.id) {
       this.props.history.replace('/profile');
     }
@@ -159,21 +90,26 @@ class Profile extends Component {
       })
     });
   };
- 
+
+  goToMarketStand = () => {
+    this.props.history.replace(`/marketstand/${this.props}`);
+  };
+  goToMarketplace = () => {
+    this.props.history.replace('/marketplace');
+  };
 
   render() {
     console.log("changed");
     return (
-      <div>
-    <Navbar></Navbar>
-      <div className="container Profile">
-      
-        <h1>Hello {this.state.username.toUpperCase()}!</h1>
-        <h1>What would you like to put on a market today.</h1>
-        {/* <p>Username: {this.state.username}</p>
-        <p>Email: {this.state.email}</p> */}
-        <div className="row">
-        <div id="vendors-form  m-4">
+      <>
+    <Wrapper>
+    <Navbar/>
+    <div className="containerProfile">
+        <h2>Hello {this.state.username.toUpperCase()}!</h2>
+        <h2>What would you like to put on a market today.</h2>
+      <div className="row">
+      {/* <div> */}
+      <form id="productPost" onSubmit={this.handleFormSubmit}>
           <div className="form-group" >
             <label htmlFor="product">Product:</label>
             <input className="form-control"
@@ -211,42 +147,22 @@ class Profile extends Component {
                    onChange={this.handleChange}/>
           </div>
           <ImageUpload handleInit={this.handleInit} handleImageUrl={this.handleImageUrl} firebaseKey={this.props.user.firebaseKey} storageBucket={bucketName} firebaseInit={this.state.firebaseInit}/>
+            <button type="submit" className="btn btn-success" onClick={this.handleFormSubmit} >Submit</button>
+            </form>
 
-         
-          <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} >Submit</button>
-
-
-          </div>
-          <div className="form-group m-4">
-          {/* <ReactFileReader fileTypes={[".png, .jpg"]}
-                           base64={true} 
-                           multipleFiles={true} 
-                           handleFiles={this.handleFiles}>
-            <button className='btn btn-primary'>Upload Image</button>
-          </ReactFileReader>
-          <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-          <br/>
-          <button onClick={this.handleUpload}>UPLOAD</button> */}
-
-         
-          </div>
-        
-        </div>
+         <div className="productImage">
+              <img src={this.state.image} alt='' width="350px" height="350px" />
+         </div> 
+      </div>
       
-        <br></br>
-        <br></br>
-        
         <div>
-        <Link to="/">Go home</Link>
-        <br></br>
-        <Link to="/marketstand">Go to Your Marketstand</Link>
+          <button type="button" className="btn btn-outline-warning" onClick={this.goToMarketplace}>Go to Marketplace</button>
+          <button type="button" className="btn btn-warning" onClick={this.goToMarketStand}>Go to Your Market Stand</button>
         </div>
-     
-     <div>
-        <img src={this.state.image} alt="" />
      </div>
-     </div>
-     </div>
+     </Wrapper>
+     <Footer />
+     </>
     )
   }
 }

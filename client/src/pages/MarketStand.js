@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
 import Navbar from '../components/Navbar';
+import Wrapper from '../components/Wrapper';
+import Footer from '../components/Footer/footer'
 import API from './../utils/API';
+import './MarketStand.css'
 // import Button from 'react-bootstrap/Button';
 
 
@@ -23,10 +25,6 @@ class MarketStand extends Component {
     reload = () => {
         // console.log(this.props)
         API.getUserProducts(this.props.match.params.id).then(res => {
-            // console.log(res)
-            // console.log(res.data.products)
-            console.log('res.data: ', res.data)
-            // const path  = this.props.match.path;
             this.setState({
                 userid: res.data.id,
                 // link: path/res.data.id,
@@ -40,35 +38,39 @@ class MarketStand extends Component {
 
     componentDidMount() {
         this.reload()
-    }
+    };
 
-    // get from the db all the product // update the state array
+    goToEditProfile = () => {
+        this.props.history.replace('/profile');
+      };
 
     render() {
         return (
             <>
+            <Wrapper>
                 <Navbar />
+                <div className="containerMarketStand">
                 <div>
-                    <h1>Welcome to {this.state.username}'s Market Stand</h1>
+                <button type="button" className="btn btn-success" onClick={this.goToEditProfile}>Go to your Profile</button>
+                </div>
+                <div>
+                    <h2>Welcome to {this.state.username}'s Market Stand</h2>
                     {this.state.products.map(product => {
-
-                        return (
+                    return (
                             <ProductCard
                                 key={product._id}
                                 id={product._id}
                                 product={product}
                                 reload={this.reload}
                             />
-                        )
-                    }
-                    )}
-
-
-
-                    <div>
-                        <Link to="/profile">Go to Profile</Link>
-                    </div>
+                           )
+                    })
+                 }
+                 </div>
                 </div>
+                
+                </Wrapper>
+                <Footer />
             </>
         )
     }

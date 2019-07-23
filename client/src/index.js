@@ -32,7 +32,7 @@ ReactDOM.render(
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/marketplace" component={MarketPlace} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/marketstand" component ={MarketStand} />
+            <Route path="/marketstand/:id" component={MarketStand} />
             <Route exact path="/team" component={Team} />
         {/* </Wrapper> */}
     </Router>

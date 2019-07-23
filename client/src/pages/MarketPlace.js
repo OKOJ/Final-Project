@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-import Geocode from "react-geocode"
 import withAuth from './../components/withAuth';
+// import Modal from './../components/Modal/Modal';
+
+import Geocode from "react-geocode"
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer/footer'
 // import Modal from './../components/Modal/Modal';
@@ -36,13 +38,13 @@ class MarketPlace extends Component {
             const requests = [];
 
             // .forEach will get each item out of the array
-            userMarkers.forEach(({address}) => {
+            userMarkers.forEach((user) => {
 
                 // Geocode will get us a lat and lng from the address that we pass it.
                 // We then push the lat, lng to requests array
-                requests.push(Geocode.fromAddress(address).then(response => {
+                requests.push(Geocode.fromAddress(user.address).then(response => {
                         const { lat, lng } = response.results[0].geometry.location;
-                        locations.push({lat, lng});
+                        locations.push({lat, lng, user});
                     },
                     // if error, console log it so we can see
                     error => {
@@ -103,6 +105,7 @@ class MarketPlace extends Component {
             </button>
             </form>
                 </Modal> */}
+            
             </Wrapper>
             <Footer />
             </>

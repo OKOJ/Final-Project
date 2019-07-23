@@ -200,6 +200,18 @@ app.get('/api/user/:id/products', isAuthenticated, (req, res) => {
 
 });
 
+app.get('/api/product/:id', isAuthenticated, (req, res) => {
+  db.Product.findById(req.params.id)
+    //.populate("product")
+    .then(data => {
+      if (data) {
+        res.json(data);
+      } else {
+        res.status(404).send({ success: false, message: 'No user found' });
+      }
+    }).catch(err => res.status(400).send(err));
+});
+
 app.delete("/api/product/:id", isAuthenticated, (req, res) => {
   console.log(req.params.id)
   db.Product.deleteOne({ _id: req.params.id })

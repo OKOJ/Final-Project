@@ -13,15 +13,23 @@ const bucketName = 'gs://makro-market.appspot.com';
 
 
 class Profile extends Component {
-  state = {
-    username: "",
-    email: "",
-    product: '',
-    price: '',
-    quantity: '',
-    description: '',
-    image: ''
-  };
+  constructor(props) {
+    // console.log(props)
+    console.log(props.match.path)
+    // console.log(props.location)
+    super(props);
+    this.state = {
+      path:this.props.match.path,
+      username: "",
+        email: "",
+        product: '',
+        price: '',
+        quantity: '',
+        description: '',
+        image: ''
+    };
+};
+
             
   handleChange = event => {
     //console.log('event.target: ', event.target)
@@ -68,15 +76,15 @@ class Profile extends Component {
   };
 
   componentWillMount() {
-    // console.log(this.props)
-    // console.log(this.props.user.id)
+   
     if (this.props.user.id) {
       this.props.history.replace('/profile');
     }
     API.getUser(this.props.user.id).then(res => {
+      
       console.log(res.data)
       this.setState({
-        
+        path:res.data,
         username: res.data.username,
         email: res.data.email
       })
@@ -84,7 +92,7 @@ class Profile extends Component {
   };
 
   goToMarketStand = () => {
-    this.props.history.replace('/marketstand');
+    this.props.history.replace(`/marketstand/${this.props}`);
   };
   goToMarketplace = () => {
     this.props.history.replace('/marketplace');

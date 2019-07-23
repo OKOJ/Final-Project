@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 import ProductCard from './../components/ProductCard';
 import Navbar from '../components/Navbar';
-import Wrapper from '../components/Wrapper';
-import Footer from '../components/Footer/footer'
 import API from './../utils/API';
-import './MarketStand.css'
 // import Button from 'react-bootstrap/Button';
 
 
 class MarketStand extends Component {
     constructor(props) {
+        console.log(props.user.id)
+        console.log(props.match.params)
+        // console.log(props.location)
         super(props);
         this.state = {
-            
             username: this.props.user.username,
             email: this.props.user.email,
             userid: this.props.user.id,
@@ -24,53 +24,51 @@ class MarketStand extends Component {
 
     reload = () => {
         // console.log(this.props)
-        API.getUserProducts(this.props.match.params.id).then(res => {
+        API.getUserProducts(this.props.user.id).then(res => {
+            // console.log(res)
+            // console.log(res.data.products)
+            console.log(res.data.email)
             this.setState({
-                userid: res.data.id,
-                // link: path/res.data.id,
                 username: res.data.username,
                 email: res.data.email,
                 products: res.data.products
-            });
+            })
 
         });
     };
 
     componentDidMount() {
+        console.log(this.props)
         this.reload()
-    };
+    }
 
-    goToEditProfile = () => {
-        this.props.history.replace('/profile');
-      };
+    // get from the db all the product // update the state array
 
     render() {
         return (
             <>
-            <Wrapper>
                 <Navbar />
-                <div className="containerMarketStand">
                 <div>
-                <button type="button" className="btn btn-success" onClick={this.goToEditProfile}>Go to your Profile</button>
-                </div>
-                <div>
-                    <h2>Welcome to {this.state.username}'s Market Stand</h2>
+                    <h1>Welcome to {this.state.username}'s Market Stand</h1>
                     {this.state.products.map(product => {
-                    return (
+
+                        return (
                             <ProductCard
                                 key={product._id}
                                 id={product._id}
                                 product={product}
                                 reload={this.reload}
                             />
-                           )
-                    })
-                 }
-                 </div>
+                        )
+                    }
+                    )}
+
+
+
+                    <div>
+                        <Link to="/profile">Go to Profile</Link>
+                    </div>
                 </div>
-                
-                </Wrapper>
-                <Footer />
             </>
         )
     }

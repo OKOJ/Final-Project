@@ -11,29 +11,34 @@ class MarketStand extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            
             username: this.props.user.username,
             email: this.props.user.email,
-            products: []
+            userid: this.props.user.id,
+            path: this.props.match.path,
+            products: [],
         };
     };
 
     reload = () => {
         // console.log(this.props)
-        API.getUserProducts(this.props.user.id).then(res => {
+        API.getUserProducts(this.props.match.params.id).then(res => {
             // console.log(res)
             // console.log(res.data.products)
-            console.log(res.data.email)
+            console.log('res.data: ', res.data)
+            // const path  = this.props.match.path;
             this.setState({
+                userid: res.data.id,
+                // link: path/res.data.id,
                 username: res.data.username,
                 email: res.data.email,
                 products: res.data.products
-            })
+            });
 
         });
     };
 
     componentDidMount() {
-        // console.log(this.props)
         this.reload()
     }
 
@@ -44,7 +49,7 @@ class MarketStand extends Component {
             <>
                 <Navbar />
                 <div>
-
+                    <h1>Welcome to {this.state.username}'s Market Stand</h1>
                     {this.state.products.map(product => {
 
                         return (

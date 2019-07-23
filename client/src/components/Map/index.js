@@ -41,7 +41,9 @@ class Maps extends Component {
               <GoogleMapReact  
 
                   // API key so we can use the google API
-                  bootstrapURLKeys={{ key: "AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8" }}
+                  bootstrapURLKeys={{ 
+                    // key: "put GEOCODE_API_KEY from .env" 
+                  }}
                   defaultCenter={this.props.center}
                   defaultZoom={this.props.zoom}>
 
@@ -67,4 +69,4 @@ class Maps extends Component {
   }
 }
 // export Maps to be used on our pages
-export default Maps;
+export default Maps

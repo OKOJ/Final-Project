@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import Maps from "../components/Map";
 import API from "../utils/API";
 import Navbar from '../components/Navbar';
-import withAuth from './../components/withAuth';
-// import Modal from './../components/Modal/Modal';
-
 import Geocode from "react-geocode"
+import withAuth from './../components/withAuth';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer/footer'
 // import Modal from './../components/Modal/Modal';
 
  
 // Google Maps Geocoding API key
-Geocode.setApiKey("AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8");
+Geocode
+.setApiKey("put BOOTSTRAP_URL_KEY from .env");
  
 // Enable or disable logs
 Geocode.enableDebug();
@@ -105,7 +104,6 @@ class MarketPlace extends Component {
             </button>
             </form>
                 </Modal> */}
-            
             </Wrapper>
             <Footer />
             </>

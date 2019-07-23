@@ -92,7 +92,7 @@ class Profile extends Component {
   };
 
   goToMarketStand = () => {
-    this.props.history.replace(`/marketstand/${this.props}`);
+    this.props.history.replace(`/marketstand/${this.props.user.id}`);
   };
   goToMarketplace = () => {
     this.props.history.replace('/marketplace');

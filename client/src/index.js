@@ -15,7 +15,6 @@ import Signup from './pages/Signup';
 import MarketPlace from './pages/MarketPlace';
 import MarketStand from './pages/MarketStand';
 import Team from './pages/Team'
-// import Wrapper from './components/Wrapper';
 
 
 // Here is if we have an id_token in localStorage
@@ -26,7 +25,6 @@ if(localStorage.getItem("id_token")) {
 
 ReactDOM.render(
     <Router>
-       {/* <Wrapper> */}
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
@@ -34,7 +32,6 @@ ReactDOM.render(
             <Route exact path="/profile" component={Profile} />
             <Route path="/marketstand/:id" component={MarketStand} />
             <Route exact path="/team" component={Team} />
-        {/* </Wrapper> */}
     </Router>
     , document.getElementById('root')
 );

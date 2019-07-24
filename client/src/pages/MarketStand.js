@@ -13,7 +13,6 @@ class MarketStand extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
             username: this.props.user.username,
             email: this.props.user.email,
             userid: this.props.user.id,

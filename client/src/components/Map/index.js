@@ -42,7 +42,7 @@ class Maps extends Component {
 
                   // API key so we can use the google API
                   bootstrapURLKeys={{ 
-                    // key: "put GEOCODE_API_KEY from .env" 
+                    key: "AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8" 
                   }}
                   defaultCenter={this.props.center}
                   defaultZoom={this.props.zoom}>

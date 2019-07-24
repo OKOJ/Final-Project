@@ -20,7 +20,7 @@ class App extends Component {
         length={6}
         showControls={false}
         showIndicators={true}
-        // className="z-depth-1"
+        className="z-depth-1"
       >
         <MDBCarouselInner>
         

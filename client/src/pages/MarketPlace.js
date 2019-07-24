@@ -11,7 +11,7 @@ import Footer from '../components/Footer/footer'
  
 // Google Maps Geocoding API key
 Geocode
-.setApiKey("put BOOTSTRAP_URL_KEY from .env");
+.setApiKey("AIzaSyB3ov2LRNVa3iSGa0M1JrptzYYeXir3xH8");
  
 // Enable or disable logs
 Geocode.enableDebug();

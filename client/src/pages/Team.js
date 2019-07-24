@@ -1,12 +1,14 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody } from "mdbreact";
+import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBBtnGroup, MDBIcon } from "mdbreact";
 import Footer from '../components/Footer/footer'
 
 const Team = () => {
   return (
     <MDBCard className="pb-4 text-center">
-      <MDBCardBody>
-        <h2 className="h1-responsive font-weight-bold">
+      <MDBCardBody style={{margin:'0',height:'auto', paddingTop:'0'}}>
+     
+        <h2 className="h1-responsive font-weight-bold mb-0 mt-0 pt-0"> 
+        <MDBBtn style={{position:'fixed', left:'0', margin:'20px'}} outline color="warning" href="/">Home</MDBBtn>
         <svg xmlns="http://www.w3.org/2500/svg" x="0px" y="0px" width="60" height="350" viewBox="0 0 192 192"
             style={{fill:'rgb(14, 13, 13)'}}>
             <g transform="translate(38.4,38.4) scale(0.6,0.6)">
@@ -35,7 +37,8 @@ const Team = () => {
         </h2>
         <MDBRow className="text-md-left">
           <MDBCol lg="6" md="12" className="mb-5">
-            <MDBCol md="4" lg="6" className="float-left">
+            <MDBCol md="4" lg="6" className="float-left"   >
+          
               <MDBCardImage
               style={{width:'200px', height:'200px'}}
               src="https://avatars3.githubusercontent.com/u/44297884?s=460&v=4"
@@ -49,10 +52,10 @@ const Team = () => {
                 Full Stack Web Developer
               </h6>
              
-              <a href="https://github.com/Corbin520" className="p-2 fa-lg fb-ic">
+              <a href="https://github.com/Corbin520" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg fb-ic">
               <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
               </a>
-              <a href="https://www.linkedin.com/in/corbin-brockbank-173459168/" className="p-2 fa-lg tw-ic">
+              <a href="https://www.linkedin.com/in/corbin-brockbank-173459168/" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg tw-ic">
               <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
               </a>
             
@@ -74,10 +77,10 @@ const Team = () => {
               Full Stack Web Developer
               </h6>
              
-              <a href="https://github.com/emilyfjonaitis" className="p-2 fa-lg fb-ic">
+              <a href="https://github.com/emilyfjonaitis" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg fb-ic">
               <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
               </a>
-              <a href="#!" className="p-2 fa-lg yt-ic">
+              <a href="#!" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg yt-ic">
               <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
               </a>
              
@@ -99,10 +102,10 @@ const Team = () => {
               Full Stack Web Developer
               </h6>
              
-              <a href="https://github.com/MarcoJohns" className="p-2 fa-lg fb-ic">
+              <a href="https://github.com/MarcoJohns" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg fb-ic">
               <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
               </a>
-              <a href="https://www.linkedin.com/in/marco-johns/" className="p-2 fa-lg tw-ic">
+              <a href="https://www.linkedin.com/in/marco-johns/" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg tw-ic">
               <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
               </a>
              
@@ -124,10 +127,10 @@ const Team = () => {
               Full Stack Web Developer
               </h6>
              
-              <a href="https://github.com/OKOJ" className="p-2 fa-lg gplus-ic">
+              <a href="https://github.com/OKOJ" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg gplus-ic">
               <img src="https://img.icons8.com/material/36/000000/github.png" alt='' />
               </a>
-              <a href="https://www.linkedin.com/in/oksana-jacoby-49190b170/" className="p-2 fa-lg li-ic">
+              <a href="https://www.linkedin.com/in/oksana-jacoby-49190b170/" target="_blank" rel="noopener noreferrer"  className="p-2 fa-lg li-ic">
               <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="" />
               </a>
               

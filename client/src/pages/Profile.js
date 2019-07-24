@@ -105,8 +105,10 @@ class Profile extends Component {
     <Wrapper>
     <Navbar/>
     <div className="containerProfile">
-        <h2>Hello {this.state.username.toUpperCase()}!</h2>
-        <h2>What would you like to put on a market today.</h2>
+          <h2>Hello {this.state.username.toUpperCase()}!</h2>
+          <button type="button" className="btn btn-outline-warning" onClick={this.goToMarketplace}>Go to Marketplace</button>
+          <button type="button" className="btn btn-warning" onClick={this.goToMarketStand}>Go to Your Market Stand</button>
+          <h2>What would you like to put on a market today.</h2>
       <div className="row">
       {/* <div> */}
       <form id="productPost" onSubmit={this.handleFormSubmit}>
@@ -155,10 +157,10 @@ class Profile extends Component {
          </div> 
       </div>
       
-        <div>
+        {/* <div>
           <button type="button" className="btn btn-outline-warning" onClick={this.goToMarketplace}>Go to Marketplace</button>
           <button type="button" className="btn btn-warning" onClick={this.goToMarketStand}>Go to Your Market Stand</button>
-        </div>
+        </div> */}
      </div>
      </Wrapper>
      <Footer />
